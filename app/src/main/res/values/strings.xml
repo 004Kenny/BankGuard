@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BankGuard</string>
+    <string name="welcome_title">Welcome to BankGuard</string>
+    <string name="tagline">Prevent. Recover. Discover.</string>
+</resources>
