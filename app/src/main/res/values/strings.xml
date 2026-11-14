@@ -1,5 +1,388 @@
 <resources>
     <string name="app_name">BankGuard</string>
-    <string name="welcome_title">Welcome to BankGuard</string>
-    <string name="tagline">Prevent. Recover. Discover.</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_prevent">Prevent</string>
+    <string name="nav_recover">Recover</string>
+    <string name="nav_discover">Discover</string>
+
+    <!-- Shared -->
+    <string name="coming_soon">Coming soon</string>
+
+    <!-- Demo transparency and app bar -->
+    <string name="demo_mode">DEMO MODE</string>
+    <string name="simulated_data_title">Simulated demo data</string>
+    <string name="cd_demo_profile">Demo profile</string>
+
+    <!-- Step tracker states (screen reader) -->
+    <string name="step_done">Done</string>
+    <string name="step_current">In progress</string>
+    <string name="step_upcoming">Not started</string>
+
+    <!-- Relative days -->
+    <string name="day_today">Today</string>
+    <string name="day_tomorrow">Tomorrow</string>
+    <string name="day_yesterday">Yesterday</string>
+    <plurals name="day_in_n">
+        <item quantity="one">In %d day</item>
+        <item quantity="other">In %d days</item>
+    </plurals>
+    <plurals name="day_n_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+
+    <!-- Demo personas -->
+    <string name="persona_underbanked_title">I have a bank account</string>
+    <string name="persona_underbanked_mode">Underbanked profile</string>
+    <string name="persona_underbanked_body">Explore balance forecasts, overdraft warnings and help asking your bank to refund fees.</string>
+    <string name="persona_underbanked_preloaded">Preloaded with a sample checking account, upcoming bills, pending charges and three sample bank fees.</string>
+    <string name="persona_unbanked_title">I don\'t have a bank account</string>
+    <string name="persona_unbanked_mode">Unbanked profile</string>
+    <string name="persona_unbanked_body">See what check cashing, prepaid cards and money orders cost you, and compare low-fee accounts.</string>
+    <string name="persona_unbanked_preloaded">Preloaded with sample check-cashing, prepaid card and money order costs, and a cash budget.</string>
+
+    <!-- Onboarding: demo profile selection -->
+    <string name="onboarding_pillars">PREVENT  •  RECOVER  •  DISCOVER</string>
+    <string name="onboarding_pillars_cd">Prevent, Recover, Discover</string>
+    <string name="onboarding_body">Your money deserves protection. Stay ahead of unexpected fees, get help asking for refunds, and find banking options that cost less.</string>
+    <string name="onboarding_choose">Choose a demo profile</string>
+    <string name="onboarding_notice">Demo profiles use fictional financial information. BankGuard is a financial assistance app, not a bank, and it isn\'t connected to any bank.</string>
+    <string name="onboarding_enter">Enter BankGuard demo</string>
+    <string name="onboarding_no_credentials">No real credentials needed</string>
+    <string name="onboarding_switch_anytime">Switch or reset anytime</string>
+
+    <!-- Demo profile sheet -->
+    <string name="profile_sheet_title">Demo profile</string>
+    <string name="profile_current">You\'re viewing %1$s\'s sample profile.</string>
+    <string name="profile_switch_underbanked">Switch to the underbanked profile</string>
+    <string name="profile_switch_unbanked">Switch to the unbanked profile</string>
+    <string name="profile_reset">Reset demo</string>
+    <string name="profile_reset_body">Resetting takes you back to profile selection. All demo data is fictional and nothing is saved to a bank.</string>
+
+    <!-- Home dashboards (shared) -->
+    <string name="home_greeting">Hi, %1$s</string>
+    <string name="home_section_upcoming">Upcoming activity</string>
+    <string name="chart_start">Today</string>
+    <plurals name="chart_end">
+        <item quantity="one">In %d day</item>
+        <item quantity="other">In %d days</item>
+    </plurals>
+
+    <!-- Home: underbanked -->
+    <string name="ub_account_chip">%1$s ••%2$s</string>
+    <string name="ub_subtitle">Here\'s your simulated cash flow for the next 7 days.</string>
+    <string name="ub_available">Simulated available</string>
+    <string name="ub_lowest">Lowest in 7 days</string>
+    <string name="ub_chart_summary">Projected balance for the coming week. Lowest point %1$s, %2$s. Balance at the end: %3$s.</string>
+    <string name="ub_next_deposit">Next deposit</string>
+    <string name="ub_next_bill">Next bill</string>
+    <string name="ub_risk_badge">High priority</string>
+    <string name="ub_risk_title">Possible overdraft</string>
+    <string name="ub_risk_body">Your %1$s bill (%2$s) is more than your available balance of %3$s. Without changes, your balance could drop to %4$s before your next deposit.</string>
+    <string name="ub_risk_action">Review cash flow</string>
+    <string name="ub_ok_badge">On track</string>
+    <string name="ub_ok_title">No overdraft expected</string>
+    <string name="ub_ok_body">Based on your scheduled bills and deposits, your balance stays above $0 for the next 7 days.</string>
+    <string name="ub_tools_title">Tools</string>
+    <string name="ub_tool_forecast">View forecast</string>
+    <string name="ub_tool_fees">Fees found</string>
+    <string name="ub_tool_accounts">Low-fee accounts</string>
+    <string name="ub_section_recent">Pending and recent</string>
+    <string name="ub_pending">Pending</string>
+    <string name="ub_posted">Posted</string>
+    <string name="ub_footer">BankGuard shows forecasts and helps you take action yourself. It never moves money on its own and isn\'t connected to any bank. Every name and amount here is fictional.</string>
+
+    <!-- Home: unbanked -->
+    <string name="unb_subtitle">No bank account. Here\'s what using your own money costs each month.</string>
+    <string name="unb_hero_label">Estimated monthly fees</string>
+    <string name="unb_per_month">per month</string>
+    <string name="unb_hero_body">Paid to check cashing, prepaid card and money order services.</string>
+    <string name="unb_year_title">About %1$s a year</string>
+    <string name="unb_year_body">That\'s what these services would cost over 12 months at this rate, just to use your own money.</string>
+    <string name="unb_opportunity_title">A low-fee bank account could cut these costs</string>
+    <string name="unb_opportunity_body">Some checking accounts have no overdraft fees, no minimum balance and free direct deposit. Compare options to estimate how much you could keep.</string>
+    <string name="unb_opportunity_action">Explore low-fee accounts</string>
+    <string name="unb_budget_title">Cash and prepaid budget</string>
+    <string name="unb_budget_value">%1$s / %2$s</string>
+    <string name="unb_prepaid_balance">Prepaid card balance</string>
+    <string name="unb_fee_log_title">Recent fees paid</string>
+    <string name="unb_footer">Every name and amount here is fictional. BankGuard helps you compare affordable banking options. It doesn\'t open accounts or move money for you.</string>
+
+    <!-- Shared actions -->
+    <string name="cd_back">Back</string>
+
+    <!-- Prevent: underbanked -->
+    <string name="pv_hero_label">Lowest projected balance</string>
+    <string name="pv_hero_when">%1$s · next 7 days</string>
+    <string name="pv_view_forecast">View day-by-day forecast</string>
+    <string name="pv_alerts_title">Alerts</string>
+    <string name="pv_overdraft_body">Your %1$s bill (%2$s) is due %3$s, before your next deposit. Your balance could drop to %4$s, which could trigger a %5$s overdraft fee.</string>
+    <string name="pv_things_title">Things you can do</string>
+    <string name="pv_tip_cancel">Ask to cancel an eligible pending charge below.</string>
+    <string name="pv_tip_biller">Contact %1$s to ask whether the payment date can move to after payday.</string>
+    <string name="pv_tip_cash">Add money to the account before the bill is paid.</string>
+    <string name="pv_minimum_badge">Fee risk</string>
+    <string name="pv_minimum_title">Minimum balance fee possible</string>
+    <string name="pv_minimum_body">Your balance is projected to stay below the %1$s minimum. %2$s charges %3$s when that happens during a statement period.</string>
+    <string name="pv_pending_title">Pending charges</string>
+    <string name="pv_pending_intro">You can ask to cancel an eligible pending charge before it posts. The partner bank decides. In this demo, its answers are simulated.</string>
+    <string name="pv_pending_none">No pending charges right now.</string>
+    <string name="status_eligible">Eligible to request</string>
+    <string name="status_not_eligible">Not eligible</string>
+    <string name="status_processing">Waiting for bank</string>
+    <string name="status_approved">Cancelled (simulated)</string>
+    <string name="status_declined">Request declined</string>
+    <string name="pv_footer">Alerts and forecasts use fictional demo data. BankGuard never moves money or cancels anything on its own.</string>
+
+    <!-- Prevent: forecast detail -->
+    <string name="fc_title">Cash-flow forecast</string>
+    <string name="fc_hero_label">Projected balance, next 7 days</string>
+    <string name="fc_lowest">Lowest</string>
+    <string name="fc_ending">End of week</string>
+    <string name="fc_how">This forecast starts from your available balance of %1$s and applies your scheduled bills and deposits on their due dates. It doesn\'t predict everyday spending, so your real balance may be lower.</string>
+    <string name="fc_days_title">Day by day</string>
+    <string name="fc_no_activity">No scheduled activity</string>
+    <string name="fc_below_zero">Below $0</string>
+    <string name="fc_end_balance">End-of-day balance %1$s</string>
+
+    <!-- Prevent: cancellation flow -->
+    <string name="cx_title">Cancel a pending charge</string>
+    <string name="cx_pending_since">Pending · %1$s</string>
+    <string name="cx_eligible_title">Eligible to request</string>
+    <string name="cx_eligible_body">You can ask the partner bank to cancel this charge. The bank still decides, and it may decline.</string>
+    <string name="cx_not_eligible_title">Not eligible for cancellation</string>
+    <string name="cx_impact_title">If the bank approves</string>
+    <string name="cx_impact_available">Available balance</string>
+    <string name="cx_impact_lowest">Lowest in 7 days</string>
+    <string name="cx_impact_change">%1$s → %2$s</string>
+    <string name="cx_steps_title">What happens</string>
+    <string name="cx_step_confirm">You confirm the request</string>
+    <string name="cx_step_confirm_body">Nothing is sent until you say so.</string>
+    <string name="cx_step_review">Simulated partner bank reviews it</string>
+    <string name="cx_step_review_body">Usually takes a moment in this demo.</string>
+    <string name="cx_step_decision">Approved or declined</string>
+    <string name="cx_step_decision_body">Your forecast changes only if it\'s approved.</string>
+    <string name="cx_request">Request cancellation</string>
+    <string name="cx_keep">Keep this charge</string>
+    <string name="cx_confirm_title">Send cancellation request?</string>
+    <string name="cx_confirm_body">BankGuard will ask the simulated partner bank to cancel %1$s (%2$s). The bank may approve or decline. Your balance changes only if it\'s approved.</string>
+    <string name="cx_confirm_yes">Send request</string>
+    <string name="cx_confirm_no">Not now</string>
+    <string name="cx_processing">Waiting for the simulated partner bank…</string>
+    <string name="cx_approved_title">Cancellation approved</string>
+    <string name="cx_approved_body">The simulated partner bank approved your request. This charge no longer counts against your balance.</string>
+    <string name="cx_reference">Reference %1$s (simulated)</string>
+    <string name="cx_approved_forecast">Your forecast is updated. Lowest balance in the next 7 days: %1$s.</string>
+    <string name="cx_declined_title">Request declined</string>
+    <string name="cx_declined_body">The simulated partner bank declined your request: %1$s</string>
+    <string name="cx_declined_forecast">Nothing changed. The charge still stands and your forecast is the same.</string>
+    <string name="cx_declined_tip_merchant">You can contact the merchant directly to ask about a refund.</string>
+    <string name="cx_declined_tip_other">See the other suggestions on the Prevent tab.</string>
+    <string name="cx_done">Back to Prevent</string>
+
+    <!-- Prevent: unbanked -->
+    <string name="pvu_title">Plan your cash</string>
+    <string name="pvu_subtitle">Stay on top of bills and set money aside for them, without a bank account.</string>
+    <string name="pvu_week_title">Coming up</string>
+    <string name="pvu_budget_title">Budget envelopes</string>
+    <string name="pvu_tips_title">Ways to cut fees</string>
+    <string name="pvu_tip_deposit">Ask your employer whether you can get paid by direct deposit to a prepaid card or account, which can avoid check-cashing fees.</string>
+    <string name="pvu_tip_atm">Use ATMs in your prepaid card\'s network to avoid extra ATM fees.</string>
+    <string name="pvu_tip_discover">Compare what a low-fee bank account would cost in Discover.</string>
+    <string name="pvu_bank_only">Overdraft alerts and pending-charge cancellation work with bank accounts, so they don\'t apply to this profile.</string>
+
+    <!-- Profile sheet: simulated bank -->
+    <string name="profile_bank_title">Simulate declined requests</string>
+    <string name="profile_bank_body">Turn on to demo what happens when the simulated partner bank says no to a cancellation request.</string>
+
+    <!-- Fee explanations -->
+    <string name="fee_overdraft_name">Overdraft fee</string>
+    <string name="fee_overdraft_what">Charged when a payment goes through even though your account doesn\'t have enough money to cover it.</string>
+    <string name="fee_overdraft_avoid">Check your forecast before big bills, and ask your bank whether you can turn off overdraft coverage so card purchases are declined instead of charged a fee.</string>
+    <string name="fee_maintenance_name">Monthly maintenance fee</string>
+    <string name="fee_maintenance_what">A monthly charge some accounts have when your balance drops below a set minimum.</string>
+    <string name="fee_maintenance_avoid">Keep your balance above the minimum, or compare accounts with no monthly fee in Discover.</string>
+    <string name="fee_atm_name">Out-of-network ATM fee</string>
+    <string name="fee_atm_what">Charged when you use an ATM outside your bank\'s network. The ATM\'s owner may charge a separate fee too.</string>
+    <string name="fee_atm_avoid">Use ATMs in your bank\'s network, or get cash back with a purchase at a store.</string>
+
+    <!-- Recover: underbanked -->
+    <string name="rc_hero_label">Fees found in your demo account</string>
+    <plurals name="rc_hero_count">
+        <item quantity="one">%d fee in the last 30 days</item>
+        <item quantity="other">%d fees in the last 30 days</item>
+    </plurals>
+    <string name="rc_hero_note">Your bank decides whether to refund them. BankGuard helps you ask.</string>
+    <string name="rc_reported_refunds">Refunds you\'ve reported: %1$s</string>
+    <string name="rc_fees_title">Fees you can ask about</string>
+    <string name="rc_charged">Charged %1$s</string>
+    <string name="rc_action_start">Explain and ask for a refund</string>
+    <string name="rc_action_continue">Continue your request</string>
+    <string name="rc_action_view">View details</string>
+    <string name="stage_found">Not started</string>
+    <string name="stage_drafted">Letter drafted</string>
+    <string name="stage_sent">Sent by you</string>
+    <string name="stage_refunded">Refunded (you reported)</string>
+    <string name="stage_not_refunded">Not refunded</string>
+    <string name="rc_how_title">How this works</string>
+    <string name="rc_how_1">Read why each fee was charged.</string>
+    <string name="rc_how_2">Build a letter, edit it, and send it to your bank yourself.</string>
+    <string name="rc_how_3">Come back and record what your bank decided.</string>
+    <string name="rc_ai_note">AI-drafted letters are planned for a later version. For now, drafts come from a template you can edit.</string>
+    <string name="rc_footer">Fees and amounts are fictional demo data. BankGuard never contacts your bank or sends anything for you, and can\'t guarantee a refund.</string>
+
+    <!-- Recover: fee detail -->
+    <string name="fd_title">Fee details</string>
+    <string name="fd_what">What this fee is</string>
+    <string name="fd_why">Why you were charged</string>
+    <string name="fd_avoid">How to avoid it next time</string>
+    <string name="fd_progress">Your request</string>
+    <string name="fd_step_found">Fee found</string>
+    <string name="fd_step_found_body">Explained above.</string>
+    <string name="fd_step_letter">Letter drafted</string>
+    <string name="fd_step_letter_body">You write and edit it.</string>
+    <string name="fd_step_sent">Sent to your bank</string>
+    <string name="fd_step_sent_body">You send it yourself: by email, in your bank\'s app, or in person.</string>
+    <string name="fd_step_decision">Bank\'s decision</string>
+    <string name="fd_step_decision_body">Your bank decides. Record the answer here.</string>
+    <string name="fd_draft">Draft a waiver letter</string>
+    <string name="fd_edit">View or edit letter</string>
+    <string name="fd_mark_sent">I sent it to my bank</string>
+    <string name="fd_sent_note">BankGuard doesn\'t send anything to your bank. Mark this only after you\'ve sent the letter yourself.</string>
+    <string name="fd_sent_confirm_title">Did you send the letter?</string>
+    <string name="fd_sent_confirm_body">Only mark this if you\'ve sent it to your bank yourself. BankGuard doesn\'t send it for you.</string>
+    <string name="fd_sent_confirm_yes">Yes, I sent it</string>
+    <string name="fd_sent_confirm_no">Not yet</string>
+    <string name="fd_decision_q">What did your bank decide?</string>
+    <string name="fd_refunded">They refunded it</string>
+    <string name="fd_not_refunded">They didn\'t</string>
+    <string name="fd_refunded_result">You reported that %1$s refunded this fee.</string>
+    <string name="fd_not_refunded_result">You reported that %1$s didn\'t refund this fee. You can ask again later, or speak to someone by phone or at a branch.</string>
+
+    <!-- Recover: letter editor -->
+    <string name="le_title">Waiver letter</string>
+    <string name="le_template_note">This draft comes from a template, not AI. Read it carefully and change anything that isn\'t right.</string>
+    <string name="le_reasons_title">Reasons to include</string>
+    <string name="le_reasons_note">Only choose reasons that are true for you.</string>
+    <string name="le_reason_rarely">I rarely get this fee</string>
+    <string name="le_reason_customer">I\'ve been a customer for a while</string>
+    <string name="le_reason_hardship">Money is tight right now</string>
+    <string name="le_reason_deposit">A deposit arrived late</string>
+    <string name="le_letter_title">Your letter</string>
+    <string name="le_letter_label">Letter text</string>
+    <string name="le_placeholder_note">Fill in anything in [square brackets] before you send it.</string>
+    <string name="le_rebuild">Rebuild from choices</string>
+    <string name="le_rebuild_title">Replace your edits?</string>
+    <string name="le_rebuild_body">Rebuilding replaces the letter, including any changes you made.</string>
+    <string name="le_rebuild_yes">Replace</string>
+    <string name="le_rebuild_no">Keep my edits</string>
+    <string name="le_save">Save draft</string>
+    <string name="le_copy">Copy</string>
+    <string name="le_share">Share</string>
+    <string name="le_saved">Draft saved</string>
+    <string name="le_copied">Letter copied</string>
+    <string name="le_share_subject">Request to waive a fee</string>
+    <string name="le_share_title">Send your letter with</string>
+    <string name="le_send_note">To send it, copy or share the letter and send it to your bank yourself.</string>
+    <string name="le_leave_title">Save your letter?</string>
+    <string name="le_leave_body">You have changes that aren\'t saved.</string>
+    <string name="le_leave_save">Save</string>
+    <string name="le_leave_discard">Discard</string>
+
+    <!-- Recover: unbanked -->
+    <string name="rcu_title">What you pay to use your money</string>
+    <string name="rcu_subtitle">Fees to check cashers, prepaid cards and money order services add up.</string>
+    <string name="rcu_monthly">%1$s/month</string>
+    <string name="rcu_types_title">Where the money goes</string>
+    <string name="rcu_check_cashing">Check cashers keep a percentage of each check they cash.</string>
+    <string name="rcu_prepaid">Prepaid cards can charge monthly fees, reload fees and ATM fees.</string>
+    <string name="rcu_money_orders">Each money order and counter bill payment has its own fee.</string>
+    <string name="rcu_refund_note">These fees are usually agreed to up front, so there\'s often nothing to ask a refund for. The bigger saving is avoiding them.</string>
+
+    <!-- Discover -->
+    <string name="ds_hero_label">Estimated yearly savings</string>
+    <string name="ds_hero_with">With %1$s, compared with today</string>
+    <string name="ds_hero_none">These sample accounts wouldn\'t cost less than what you pay today.</string>
+    <string name="ds_hero_current_ub">Your account now: about %1$s a year in fees</string>
+    <string name="ds_hero_current_unb">Today: about %1$s a year in check-cashing, prepaid and money order fees</string>
+    <string name="ds_hero_note">An estimate from your demo fees, not a guarantee.</string>
+    <string name="ds_adjust">Adjust your estimate</string>
+    <string name="ds_filters_title">Filter accounts</string>
+    <string name="filter_no_overdraft">No overdraft fees</string>
+    <string name="filter_no_monthly">No monthly fee</string>
+    <string name="filter_no_minimum">No minimum balance</string>
+    <string name="filter_second_chance">Second chance</string>
+    <string name="ds_options_title">Low-fee accounts (samples)</string>
+    <string name="ds_none_match">No sample accounts match these filters.</string>
+    <string name="fact_monthly">Monthly fee</string>
+    <string name="fact_monthly_waived">%1$s, waived with direct deposit</string>
+    <string name="fact_overdraft">Overdraft fee</string>
+    <string name="fact_overdraft_none">None (declined instead)</string>
+    <string name="fact_minimum">Minimum balance</string>
+    <string name="fact_opening">Opening deposit</string>
+    <string name="fact_atm">Out-of-network ATM fee</string>
+    <string name="fact_yearly">Estimated yearly cost</string>
+    <string name="fact_monthly_below_min">%1$s if under %2$s</string>
+    <string name="fact_alt_not_needed">Not needed with direct deposit</string>
+    <string name="fact_not_applicable">Not applicable</string>
+    <string name="fact_alt_services">Check cashing, prepaid and money orders</string>
+    <string name="fact_per_month">%1$s/month</string>
+    <string name="ds_saves">Saves about %1$s a year</string>
+    <string name="ds_costs_more">Costs about %1$s more a year</string>
+    <string name="ds_same">About the same as today</string>
+    <string name="ds_best">Best estimated savings</string>
+    <string name="badge_partner">Proposed partner (demo)</string>
+    <string name="badge_second_chance">Second chance</string>
+    <string name="ds_compare">Compare with what you pay now</string>
+    <string name="disc_title">How BankGuard would make money</string>
+    <string name="disc_body">BankGuard is free for you. Under its proposed business model, a partner bank could pay BankGuard a referral fee (about $15) when someone opens a qualifying account. No partnerships exist in this demo. Accounts are ordered by your estimated savings, never by referral fees, and possible partners are labeled.</string>
+    <string name="ds_footer">Every account and institution here is fictional. BankGuard doesn\'t open accounts or move money.</string>
+
+    <!-- Discover: comparison -->
+    <string name="cmp_title">Compare accounts</string>
+    <string name="cmp_current_ub">Your account now</string>
+    <string name="cmp_current_unb">No bank account</string>
+    <string name="cmp_features">What this account offers</string>
+    <string name="cmp_how_title">How this was estimated</string>
+    <plurals name="cmp_how_overdrafts">
+        <item quantity="one">%d overdraft a year</item>
+        <item quantity="other">%d overdrafts a year</item>
+    </plurals>
+    <plurals name="cmp_how_months_below">
+        <item quantity="one">%d month a year below your minimum balance</item>
+        <item quantity="other">%d months a year below your minimum balance</item>
+    </plurals>
+    <plurals name="cmp_how_atm">
+        <item quantity="one">%d out-of-network ATM withdrawal a month</item>
+        <item quantity="other">%d out-of-network ATM withdrawals a month</item>
+    </plurals>
+    <string name="cmp_how_dd_yes">You get paid by direct deposit</string>
+    <string name="cmp_how_dd_no">You don\'t get paid by direct deposit</string>
+    <string name="cmp_how_alt">You pay %1$s a month today to check cashers, prepaid cards and money order services</string>
+    <string name="cmp_how_assume_dd">Assumes your paycheck goes straight into the new account, so check-cashing and money order fees stop</string>
+    <string name="cmp_before_title">Before you switch</string>
+    <string name="cmp_before_schedule">Ask the bank for its full fee schedule and read it.</string>
+    <string name="cmp_before_id">Ask what ID you\'ll need to open the account.</string>
+    <string name="cmp_before_keep_open">Keep your old account open until your paycheck and bills have moved.</string>
+    <string name="cmp_before_employer">Ask your employer how to set up direct deposit.</string>
+    <string name="cmp_no_open">BankGuard can\'t open accounts, and these sample accounts don\'t exist. In a real version, this is where you\'d go to the bank\'s own website.</string>
+
+    <!-- Discover: savings calculator -->
+    <string name="calc_title">Adjust your estimate</string>
+    <string name="calc_intro">Change these to match how you bank. The estimates update as you go.</string>
+    <string name="calc_overdrafts">Overdrafts a year</string>
+    <string name="calc_months_below">Months a year below your minimum balance</string>
+    <string name="calc_atm">Out-of-network ATM withdrawals a month</string>
+    <string name="calc_dd">I get paid by direct deposit</string>
+    <string name="calc_dd_unb">I could get paid by direct deposit</string>
+    <string name="calc_alt">What you pay each month now</string>
+    <string name="calc_alt_hint">Check cashing, prepaid card and money order fees, in dollars</string>
+    <string name="calc_alt_error">Enter an amount like 148.50</string>
+    <string name="calc_results">Estimated yearly cost</string>
+    <string name="calc_today">Today</string>
+    <string name="calc_reset">Reset to demo values</string>
+    <string name="cd_decrease">Decrease %1$s</string>
+    <string name="cd_increase">Increase %1$s</string>
 </resources>

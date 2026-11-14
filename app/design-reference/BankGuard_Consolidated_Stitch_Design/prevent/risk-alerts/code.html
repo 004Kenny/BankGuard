@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-container": "#131b2e", "on-background": "#0b1c30", "on-primary-fixed-variant": "#3f465c", "on-primary-container": "#7c839b", "inverse-primary": "#bec6e0", "tertiary-fixed-dim": "#ffb95f", "on-tertiary": "#ffffff", "primary-fixed-dim": "#bec6e0", "surface-container-lowest": "#ffffff", "on-surface-variant": "#45464d", "on-error-container": "#93000a", "on-primary": "#ffffff", "background": "#f8f9ff", "error-container": "#ffdad6", "surface-bright": "#f8f9ff", "on-tertiary-container": "#b87500", "surface-container-highest": "#d3e4fe", "inverse-on-surface": "#eaf1ff", "surface-variant": "#d3e4fe", "secondary": "#006a61", "primary-fixed": "#dae2fd", "on-tertiary-fixed-variant": "#653e00", "surface": "#f8f9ff", "secondary-fixed-dim": "#6bd8cb", "on-primary-fixed": "#131b2e", "primary": "#000000", "on-secondary-container": "#006f66", "error": "#ba1a1a", "inverse-surface": "#213145", "tertiary-container": "#2a1700", "surface-container-high": "#dce9ff", "surface-container": "#e5eeff", "secondary-container": "#86f2e4", "secondary-fixed": "#89f5e7", "outline": "#76777d", "on-secondary-fixed": "#00201d", "on-error": "#ffffff", "on-secondary-fixed-variant": "#005049", "surface-tint": "#565e74", "surface-container-low": "#eff4ff", "surface-dim": "#cbdbf5", "tertiary": "#000000", "on-surface": "#0b1c30", "outline-variant": "#c6c6cd", "tertiary-fixed": "#ffddb8", "on-secondary": "#ffffff", "on-tertiary-fixed": "#2a1700" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "gutter": "1rem", "space-sm": "0.5rem", "gutter-sm": "0.75rem", "space-md": "1rem", "margin-tablet": "1.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "margin": "1rem" }, fontFamily: { "title-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "label-sm": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-md": ["Inter"], "headline-sm": ["Plus Jakarta Sans"] }, fontSize: { "title-md": ["16px", { "lineHeight": "22px", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased selection:bg-secondary-container selection:text-on-secondary-container"><header class="fixed top-0 inset-x-0 z-50 bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-6 px-margin flex items-center justify-between text-on-surface select-none"><span class="font-label-sm text-label-sm font-semibold tracking-wider">09:41</span><div class="flex items-center gap-space-xs text-on-surface-variant"><span class="material-symbols-outlined text-[15px]">signal_cellular_4_bar</span><span class="material-symbols-outlined text-[15px]">wifi</span><span class="material-symbols-outlined text-[17px]">battery_charging_full</span></div></div><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="BankGuard Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrCXRcxgh0RdXVXRsLdPjkMSYZ8GDZk7Z4p-qHRs3RPtJ7G3x8MWiYNQxOEcRcWyn1u9D1V1QPMMcJcb4piV6IRjwAuETOH2d3AdbjeeV9aKndg3C3rgdXZmhbIDVXrwgDr-Cb4A4zE3I920fg_0i6yfviN2p0x29gibaMsIWr-7mS2unv1_g-b8s5yaVEVvj81r-m9bNxzGew1YWi-7pMaQU7Y3mNA_u6ZPcSH_-Q"/><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">BankGuard</span><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>Active</span></div><span class="font-label-sm text-label-sm text-on-surface-variant">Risk &amp; Alerts</span></div></div><div class="flex items-center gap-space-sm"><button aria-label="Notifications &amp; Security Advisories" class="relative w-11 h-11 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors text-on-surface"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="relative flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOhSVttci99iAVDXwRtBUzTmh5eOenE-mgxXzylkMmG_0ty8i85uOmWA_BKgO1CtILNIhGLaYo5eqdAEaR6O84fohomt759jSgIo1CsWZdiyI6ryqzbfaHy05wKfIcTS136CtLAYPhBJ5fmTgJG9-0q39vs4nqsMUo9BM8cXgQhryqt8LsYMDDHVbV1eMpQAlyRN8_shGDYk_oU7dCaC45-55bVd4tCMsPfaFi"/><span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-secondary rounded-full ring-2 ring-surface-container-lowest flex items-center justify-center"><span class="material-symbols-outlined text-on-secondary text-[8px]">verified</span></span></div></div></div></header><main class="flex flex-col relative w-full pt-[88px] pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-margin space-y-space-md">
+<!-- Protective Header & Risk Radar -->
+<div class="bg-primary-container text-on-primary rounded-xl p-space-md shadow-lg relative overflow-hidden">
+<!-- Ambient Shield Glow Background -->
+<div class="absolute -right-8 -bottom-8 w-44 h-44 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/4 -top-10 w-32 h-32 rounded-full bg-secondary-container/10 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col space-y-space-md">
+<!-- Title & Live Status -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary/30 flex items-center justify-center text-secondary-container">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">radar</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm tracking-tight text-surface-container-lowest">Financial Risk Radar</h2>
+<p class="font-label-sm text-label-sm text-on-primary-container">Live predictive shield • Updated 4m ago</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary text-surface-container-lowest font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-ping"></span>
+          Shield Guarding
+        </span>
+</div>
+<!-- Radar Gauge & Metrics -->
+<div class="grid grid-cols-12 gap-space-sm items-center bg-surface-container-lowest/10 backdrop-blur-md rounded-lg p-space-sm">
+<!-- SVG Gauge Meter -->
+<div class="col-span-5 flex flex-col items-center justify-center relative">
+<svg class="w-28 h-20" fill="none" viewbox="0 0 120 75">
+<!-- Gauge Track -->
+<path class="text-on-primary-container/30" d="M 15 65 A 45 45 0 0 1 105 65" stroke="currentColor" stroke-linecap="round" stroke-width="9"></path>
+<!-- Gauge Fill (Low Risk zone highlighted) -->
+<path class="text-secondary-fixed" d="M 15 65 A 45 45 0 0 1 52 24" stroke="currentColor" stroke-dasharray="80 120" stroke-linecap="round" stroke-width="9"></path>
+<!-- Center Pivot Indicator -->
+<circle class="text-secondary-container" cx="60" cy="65" fill="currentColor" r="4"></circle>
+<!-- Gauge Needle -->
+<line class="text-surface-container-lowest" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" x1="60" x2="42" y1="65" y2="34"></line>
+</svg>
+<div class="text-center -mt-1">
+<span class="font-headline-sm text-headline-sm text-secondary-fixed block leading-none">Low</span>
+<span class="font-label-sm text-label-sm text-on-primary-container uppercase tracking-wider">Overall Risk</span>
+</div>
+</div>
+<!-- Radar Narrative -->
+<div class="col-span-7 flex flex-col justify-center space-y-1 pl-space-xs">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-surface-container-lowest font-bold">2 Threats</span>
+<span class="font-label-sm text-label-sm text-on-primary-container">actionable</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-tight">
+            Preventative interventions ready. Resolving now preserves <span class="text-surface-container-lowest font-semibold">$54.10</span> this pay cycle.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Label -->
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Immediate Interventions</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">3 Predicted</span>
+</div>
+<!-- Active Risk Card 1: Overdraft Threat (High) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm transition-all duration-200" id="card-overdraft">
+<!-- Card Top Badge Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold uppercase tracking-wide">
+          High Urgency
+        </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">event</span>
+        Oct 24 Expected
+      </span>
+</div>
+<!-- Alert Header & Amount -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-11 h-11 rounded-lg bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="font-title-md text-title-md text-on-surface leading-snug">Apex Demo Checking</h4>
+<p class="font-headline-sm text-headline-sm text-error font-bold mt-0.5">Deficit Risk: -$42.10</p>
+</div>
+</div>
+<!-- Explanation Box with Tactile Tint -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Upcoming outflow (<span class="font-semibold text-on-surface">$185.00 Power Utility</span>) exceeds expected <span class="font-semibold text-on-surface">$142.90 balance</span> before your scheduled payday on Oct 25.
+      </p>
+</div>
+<!-- Visual Timeline / Cash Flow Delta -->
+<div class="bg-surface-container rounded-lg p-space-sm space-y-1.5">
+<div class="flex justify-between items-center font-label-sm text-label-sm text-on-surface-variant">
+<span>Current Projected Dip</span>
+<span class="text-error font-bold font-label-sm text-label-sm">-$42.10</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full rounded-full" style="width: 76%"></div>
+<div class="bg-error h-full rounded-r-full" style="width: 24%"></div>
+</div>
+<div class="flex justify-between items-center font-label-sm text-label-sm text-on-surface-variant">
+<span>Safe Balance ($142.90)</span>
+<span class="text-on-surface font-medium">Utility Outflow ($185.00)</span>
+</div>
+</div>
+<!-- Resolution Actions (>= 48dp hit touch) -->
+<div class="pt-space-xs flex flex-col gap-2">
+<button class="h-12 w-full px-space-md rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform" onclick="handleResolve('card-overdraft', 'Buffer of $50 activated! Overdraft threat neutralized.')">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+        Activate $50 Emergency Buffer
+      </button>
+<button class="h-12 w-full px-space-md rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+        Adjust Bill Date to Oct 26
+      </button>
+</div>
+</article>
+<!-- Active Risk Card 2: Fee Hike Alert (Medium) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm transition-all duration-200" id="card-feehike">
+<!-- Top Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-on-tertiary-container"></span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold uppercase tracking-wide">
+          Medium Urgency
+        </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">trending_up</span>
+        Policy Change
+      </span>
+</div>
+<!-- Alert Title -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-11 h-11 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">price_change</span>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="font-title-md text-title-md text-on-surface leading-snug">Metro Demo Vault</h4>
+<p class="font-headline-sm text-headline-sm text-on-tertiary-container font-bold mt-0.5">Threshold Hike: $500 → $1,000</p>
+</div>
+</div>
+<!-- Explanation Box -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Bank modified terms quietly. A recurring <span class="font-semibold text-on-surface">$12.00/month</span> maintenance surcharge will trigger starting the next billing cycle unless deposit threshold is restored.
+      </p>
+</div>
+<!-- Comparison Pills -->
+<div class="grid grid-cols-2 gap-2">
+<div class="bg-surface-container rounded-lg p-2 text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Your Current Balance</span>
+<span class="font-title-md text-title-md text-on-surface font-semibold">$520.00</span>
+</div>
+<div class="bg-surface-container rounded-lg p-2 text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">New Min. Required</span>
+<span class="font-title-md text-title-md text-error font-semibold">$1,000.00</span>
+</div>
+</div>
+<!-- Action -->
+<div class="pt-space-xs">
+<button class="h-12 w-full px-space-md rounded-lg bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform" onclick="handleResolve('card-feehike', 'Account switch initiated! Routing to fee-free partner vault.')">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+        Consolidate $500 or Switch Accounts
+      </button>
+</div>
+</article>
+<!-- Active Risk Card 3: Silent Subscription (Low/Actionable) -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-sm transition-all duration-200" id="card-sub">
+<!-- Top Row -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold uppercase tracking-wide">
+          Predictive Auto-Catch
+        </span>
+</div>
+<span class="font-label-sm text-label-sm text-error font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">timer</span>
+        48 Hours Left
+      </span>
+</div>
+<!-- Alert Title -->
+<div class="flex items-start gap-space-sm pt-space-xs">
+<div class="w-11 h-11 rounded-lg bg-surface-container text-on-surface flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">subscriptions</span>
+</div>
+<div class="min-w-0 flex-1">
+<h4 class="font-title-md text-title-md text-on-surface leading-snug">CloudGames Annual Pass</h4>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5">$89.00 Auto-Charge</p>
+</div>
+</div>
+<!-- Explanation Box -->
+<div class="bg-surface-container-low rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">insights</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+        Zero app engagement or login recorded in <span class="font-semibold text-on-surface">4 months</span>. BankGuard identified this as an unmanaged ghost subscription.
+      </p>
+</div>
+<!-- Action -->
+<div class="pt-space-xs flex gap-2">
+<button class="h-12 flex-1 px-space-md rounded-lg bg-error text-on-error font-label-lg text-label-lg flex items-center justify-center gap-1.5 active:scale-[0.98] transition-transform" onclick="handleResolve('card-sub', 'Pre-authorization revoked. Merchant blocked successfully.')">
+<span class="material-symbols-outlined text-[18px]">block</span>
+        Block &amp; Cancel
+      </button>
+<button class="h-12 px-space-md rounded-lg bg-surface-container text-on-surface-variant font-label-lg text-label-lg flex items-center justify-center active:scale-[0.98] transition-transform" onclick="handleDismiss('card-sub')">
+        Keep
+      </button>
+</div>
+</article>
+<!-- Interactive Feedback Toast -->
+<div class="hidden transition-all duration-300 p-space-md rounded-xl bg-secondary text-on-secondary shadow-xl flex items-center gap-space-sm" id="toast-feedback">
+<span class="material-symbols-outlined text-[22px] shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-body-md text-body-md font-medium flex-1" id="toast-message"></span>
+</div>
+<!-- Resolved Risks & Historical Defense Log -->
+<section class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm space-y-space-md mt-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Shield Protection Log</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">2 risks successfully averted this month</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-bold">
+        +$54.20 Saved
+      </span>
+</div>
+<!-- Resolved List Items -->
+<div class="space-y-space-sm divide-y-0">
+<!-- Resolved Item 1 -->
+<div class="flex items-start gap-space-sm bg-surface-container-low rounded-lg p-space-sm">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">security_update_good</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-baseline justify-between gap-1">
+<h5 class="font-title-md text-title-md text-on-surface truncate">Prevented Duplicate Charge</h5>
+<span class="font-label-sm text-label-sm text-secondary font-semibold shrink-0">+$48.20</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            DemoMart attempted concurrent billing within 3 seconds. Instant hold triggered.
+          </p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 18, 14:32</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Reversed Automatically</span>
+</div>
+</div>
+</div>
+<!-- Resolved Item 2 -->
+<div class="flex items-start gap-space-sm bg-surface-container-low rounded-lg p-space-sm">
+<div class="w-9 h-9 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">atm</span>
+</div>
+<div class="min-w-0 flex-1">
+<div class="flex items-baseline justify-between gap-1">
+<h5 class="font-title-md text-title-md text-on-surface truncate">Avoided Out-of-Network ATM Surcharge</h5>
+<span class="font-label-sm text-label-sm text-secondary font-semibold shrink-0">+$6.00</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Airport Kiosk fee warning alerted user; navigated to in-network zero-fee partner 90m away.
+          </p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 12, 08:15</span>
+<span class="inline-block w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Direct Surcharge Avoided</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Educational Footer Callout -->
+<div class="bg-surface-container rounded-lg p-space-sm flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-secondary">psychology</span>
+<p class="font-body-sm text-body-sm">
+        BankGuard neural scans run every 15 minutes across all connected checking and credit rails.
+      </p>
+</div>
+</section>
+</div>
+<script>
+  function handleResolve(cardId, feedbackText) {
+    const card = document.getElementById(cardId);
+    const toast = document.getElementById('toast-feedback');
+    const toastMsg = document.getElementById('toast-message');
+
+    if (!card) return;
+
+    card.classList.add('opacity-40', 'pointer-events-none');
+    setTimeout(() => {
+      card.classList.add('hidden');
+    }, 300);
+
+    toastMsg.textContent = feedbackText;
+    toast.classList.remove('hidden');
+    toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 4500);
+  }
+
+  function handleDismiss(cardId) {
+    const card = document.getElementById(cardId);
+    if (!card) return;
+    card.classList.add('opacity-30');
+    setTimeout(() => {
+      card.classList.add('hidden');
+    }, 250);
+  }
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(0,0,0,0.03)]" data-active-classes="text-secondary font-semibold"><div class="flex justify-around items-center h-16 px-gutter-sm"><a class="flex flex-col items-center justify-center flex-1 h-full gap-0.5 text-on-surface-variant hover:text-on-surface transition-all duration-150" data-path="overview" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm">Overview</span></a><a class="flex flex-col items-center justify-center flex-1 h-full gap-0.5 text-on-surface-variant hover:text-on-surface transition-all duration-150" data-path="risk-alerts" href="#"><div class="relative flex items-center justify-center"><span class="material-symbols-outlined text-[22px]">shield</span><span class="absolute -top-0.5 -right-1 w-1.5 h-1.5 rounded-full bg-error"></span></div><span class="font-label-sm text-label-sm">Risk &amp; Alerts</span></a><a class="flex flex-col items-center justify-center flex-1 h-full gap-0.5 text-on-surface-variant hover:text-on-surface transition-all duration-150" data-path="fee-recovery" href="#"><span class="material-symbols-outlined text-[22px]">currency_exchange</span><span class="font-label-sm text-label-sm">Fee Recovery</span></a><a class="flex flex-col items-center justify-center flex-1 h-full gap-0.5 text-on-surface-variant hover:text-on-surface transition-all duration-150" data-path="better-options" href="#"><span class="material-symbols-outlined text-[22px]">auto_awesome</span><span class="font-label-sm text-label-sm">Better Options</span></a></div></nav></body></html>

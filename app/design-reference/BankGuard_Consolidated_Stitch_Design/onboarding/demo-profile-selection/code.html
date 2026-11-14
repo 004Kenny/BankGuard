@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "outline": "#74777e", "secondary-container": "#95f1ff", "on-background": "#041b3c", "on-tertiary-fixed": "#00201d", "on-primary-container": "#7a92b0", "surface-container-highest": "#d7e2ff", "on-error-container": "#93000a", "inverse-on-surface": "#edf0ff", "on-surface-variant": "#43474d", "primary-fixed-dim": "#b0c9e8", "tertiary-fixed-dim": "#45dccc", "on-tertiary-fixed-variant": "#005049", "on-error": "#ffffff", "surface-variant": "#d7e2ff", "surface-container-low": "#f1f3ff", "tertiary": "#001815", "background": "#f9f9ff", "surface": "#f9f9ff", "surface-container-lowest": "#ffffff", "inverse-surface": "#1d3052", "surface-tint": "#49607c", "on-secondary-fixed": "#001f24", "secondary-fixed": "#95f1ff", "on-surface": "#041b3c", "primary-container": "#102a43", "tertiary-container": "#002f2b", "surface-dim": "#cadaff", "on-primary-fixed": "#011d35", "on-secondary-fixed-variant": "#004f57", "surface-container-high": "#e0e8ff", "on-primary-fixed-variant": "#314863", "outline-variant": "#c3c6ce", "primary-fixed": "#d1e4ff", "on-secondary": "#ffffff", "on-primary": "#ffffff", "error-container": "#ffdad6", "secondary": "#006874", "on-secondary-container": "#006f7b", "secondary-fixed-dim": "#79d4e2", "on-tertiary-container": "#00a295", "surface-container": "#e8edff", "error": "#ba1a1a", "on-tertiary": "#ffffff", "inverse-primary": "#b0c9e8", "surface-bright": "#f9f9ff", "primary": "#00152a", "tertiary-fixed": "#69f9e8" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "space-xl": "2rem", "gutter": "1rem", "space-sm": "0.5rem", "margin-tablet": "1.5rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter-tablet": "1.5rem", "margin": "1rem", "margin-desktop": "2rem" }, "fontFamily": { "body-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "display-md": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "body-md": ["Inter"], "label-md": ["Inter"], "headline-lg": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "title-lg": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "title-md": ["Inter"], "label-sm": ["Inter"], "title-sm": ["Inter"] }, "fontSize": { "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}], "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}], "display-md": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "700"}], "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}], "display-lg": ["44px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}], "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}], "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600"}], "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}], "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}], "title-lg": ["18px", {"lineHeight": "26px", "fontWeight": "600"}], "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}], "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}], "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700"}], "title-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}] } } } };</script><style>@layer base{html,body{width:100vw;min-height:100vh;margin:0;padding:0;background-color:#f9f9ff;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased flex flex-col pt-safe pb-safe selection:bg-secondary-container selection:text-on-secondary-fixed"><main class="flex flex-col relative w-full bg-surface min-h-screen"><div class="flex flex-col w-full pb-8">
+<!-- Interactive State Controller Script -->
+<script>
+    function selectPersona(personaId) {
+      const card1 = document.getElementById('persona-card-underbanked');
+      const card2 = document.getElementById('persona-card-unbanked');
+      const radio1 = document.getElementById('radio-underbanked');
+      const radio2 = document.getElementById('radio-unbanked');
+      const feedback = document.getElementById('persona-feedback');
+      const ctaBtn = document.getElementById('cta-submit');
+
+      if (personaId === 'underbanked') {
+        card1.classList.remove('bg-surface-container-lowest', 'shadow-sm');
+        card1.classList.add('bg-surface-container-high', 'shadow-md');
+        radio1.innerHTML = '<span class="w-3 h-3 rounded-full bg-secondary"></span>';
+        
+        card2.classList.remove('bg-surface-container-high', 'shadow-md');
+        card2.classList.add('bg-surface-container-lowest', 'shadow-sm');
+        radio2.innerHTML = '';
+        
+        feedback.innerText = 'Preloaded with checking alerts, fee monitoring & $45 recovery claims.';
+      } else {
+        card2.classList.remove('bg-surface-container-lowest', 'shadow-sm');
+        card2.classList.add('bg-surface-container-high', 'shadow-md');
+        radio2.innerHTML = '<span class="w-3 h-3 rounded-full bg-secondary"></span>';
+        
+        card1.classList.remove('bg-surface-container-high', 'shadow-md');
+        card1.classList.add('bg-surface-container-lowest', 'shadow-sm');
+        radio1.innerHTML = '';
+        
+        feedback.innerText = 'Preloaded with prepaid card audits, check-cashing fee tools & zero-fee bank discovery.';
+      }
+
+      ctaBtn.classList.remove('opacity-90');
+      ctaBtn.classList.add('scale-[1.01]');
+      setTimeout(() => ctaBtn.classList.remove('scale-[1.01]'), 150);
+    }
+  </script>
+<!-- Sandbox / Demo Transparency Header Tag -->
+<div class="px-4 pt-3 pb-2 w-full flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant text-label-sm font-label-sm tracking-wider uppercase">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+      Sandbox Mode
+    </div>
+<div class="inline-flex items-center gap-1 text-on-surface-variant text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+      AES-256 Mocked
+    </div>
+</div>
+<!-- Hero & Branding Header -->
+<div class="px-4 pt-4 pb-6 flex flex-col items-center text-center">
+<!-- Geometric Shield Emblem -->
+<div class="relative w-20 h-20 mb-4 flex items-center justify-center">
+<!-- Ambient Glow Behind Shield -->
+<div class="absolute inset-0 rounded-2xl bg-secondary-container/40 blur-xl"></div>
+<!-- Shield Canvas Vector -->
+<div class="relative w-20 h-20 rounded-2xl bg-primary-container flex items-center justify-center shadow-md">
+<svg class="w-12 h-12 text-secondary-fixed" fill="none" stroke="currentColor" viewbox="0 0 48 48">
+<path d="M24 4L8 10V22C8 32.5 14.8 41.8 24 44C33.2 41.8 40 32.5 40 22V10L24 4Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M24 14V34" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<path d="M16 22H32" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Wordmark & Tagline -->
+<h1 class="text-headline-lg-mobile font-headline-lg-mobile text-primary tracking-tight">BankGuard</h1>
+<div class="inline-flex items-center gap-2 mt-1">
+<span class="text-label-sm font-label-sm tracking-widest uppercase text-secondary font-bold">Prevent</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm tracking-widest uppercase text-secondary font-bold">Recover</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm tracking-widest uppercase text-secondary font-bold">Discover</span>
+</div>
+<!-- Value Proposition -->
+<p class="mt-3 text-body-md font-body-md text-on-surface-variant max-w-xs leading-relaxed">
+      Your money deserves protection. Stay ahead of unexpected fees, get help requesting refunds, and discover better banking options.
+    </p>
+</div>
+<!-- Persona Selection Section -->
+<div class="px-4 flex flex-col gap-3">
+<div class="flex items-center justify-between px-1">
+<span class="text-label-md font-label-md text-on-surface font-semibold">Choose Your Demo Profile</span>
+<span class="text-label-sm font-label-sm text-secondary">Step 1 of 2</span>
+</div>
+<!-- Persona 1: Underbanked Account Holder -->
+<div class="group relative w-full p-4 rounded-xl bg-surface-container-high transition-all duration-200 cursor-pointer shadow-md" id="persona-card-underbanked" onclick="selectPersona('underbanked')" role="button" tabindex="0">
+<div class="flex items-start gap-3">
+<!-- Leading Accent Icon -->
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest flex items-center justify-center flex-shrink-0 text-primary-container shadow-sm">
+<span class="material-symbols-outlined text-[24px]">account_balance</span>
+</div>
+<!-- Copy -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h2 class="text-title-md font-title-md text-on-surface font-semibold truncate">I have a bank account</h2>
+<!-- Material 3 Radio Pill -->
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest flex items-center justify-center" id="radio-underbanked">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+</div>
+</div>
+<span class="inline-block mt-0.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-secondary font-medium">Underbanked Mode</span>
+<p class="mt-1.5 text-body-sm font-body-sm text-on-surface-variant leading-snug">
+            Explore proactive tools for predicting balances, auto-generating fee refund tickets, and dodging recurring overdraft charges.
+          </p>
+</div>
+</div>
+</div>
+<!-- Persona 2: Unbanked / Alternative Services -->
+<div class="group relative w-full p-4 rounded-xl bg-surface-container-lowest transition-all duration-200 cursor-pointer shadow-sm" id="persona-card-unbanked" onclick="selectPersona('unbanked')" role="button" tabindex="0">
+<div class="flex items-start gap-3">
+<!-- Leading Accent Icon -->
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center flex-shrink-0 text-secondary shadow-sm">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+</div>
+<!-- Copy -->
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<h2 class="text-title-md font-title-md text-on-surface font-semibold truncate">I don't have an account</h2>
+<!-- Material 3 Radio Pill -->
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center" id="radio-unbanked">
+<!-- Unchecked indicator -->
+</div>
+</div>
+<span class="inline-block mt-0.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant font-medium">Alternative Finance</span>
+<p class="mt-1.5 text-body-sm font-body-sm text-on-surface-variant leading-snug">
+            Audit high cash-cashing and prepaid card costs, match with zero-barrier checking, and establish financial safeguards.
+          </p>
+</div>
+</div>
+</div>
+<!-- Dynamic Context Sub-label -->
+<div class="flex items-center gap-2 px-1 text-label-sm font-label-sm text-secondary-container-variant text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary">info</span>
+<span class="truncate" id="persona-feedback">Preloaded with checking alerts, fee monitoring &amp; $45 recovery claims.</span>
+</div>
+</div>
+<!-- Interactive Snapshot Strip: Real-time Value Mock -->
+<div class="mt-6 px-4">
+<div class="p-3.5 rounded-xl bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">shield_with_heart</span>
+</div>
+<div class="flex flex-col">
+<span class="text-title-sm font-title-sm text-on-surface">Community Protection</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Avg. $310 saved/yr in avoidable fees</span>
+</div>
+</div>
+<div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-sm font-label-sm font-bold">
+<span>4.9</span>
+<span class="material-symbols-outlined text-[14px]">star</span>
+</div>
+</div>
+</div>
+<!-- Compliance Banner -->
+<div class="mt-6 px-4">
+<div class="p-3.5 rounded-xl bg-surface-container text-on-surface-variant flex items-start gap-2.5">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant flex-shrink-0 mt-0.5">policy</span>
+<p class="text-body-sm font-body-sm leading-relaxed">
+<span class="font-semibold text-on-surface">Notice:</span> Demo profiles use fictional financial information. BankGuard is a financial assistance application, not a chartered bank.
+      </p>
+</div>
+</div>
+<!-- Sticky Reachable Action Footer (Jetpack Compose Anchored Bottom Sheet Area) -->
+<div class="mt-8 px-4 flex flex-col gap-3">
+<button class="w-full h-14 min-h-[56px] rounded-xl bg-secondary text-on-secondary text-label-lg font-label-lg font-bold flex items-center justify-center gap-2 shadow-md hover:bg-secondary/90 active:scale-[0.98] transition-transform" id="cta-submit" type="button">
+<span>Enter BankGuard Demo</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<div class="flex items-center justify-center gap-4 py-1 text-label-sm font-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">lock</span>
+        No real credentials required
+      </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">refresh</span>
+        Reset state anytime
+      </span>
+</div>
+</div>
+</div></main></body></html>
