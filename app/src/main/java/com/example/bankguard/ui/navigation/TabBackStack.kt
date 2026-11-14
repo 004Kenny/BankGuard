@@ -43,6 +43,18 @@ class TabBackStack(initial: List<String> = emptyList()) {
 @Composable
 fun rememberTabBackStack(): TabBackStack = rememberSaveable(saver = TabBackStack.Saver) { TabBackStack() }
 
+/** Screens that open inside the Home tab. */
+sealed interface HomeRoute {
+    /** Overdraft-free streak details and achievements. */
+    data object Streaks : HomeRoute
+
+    val key: String get() = "streaks"
+
+    companion object {
+        fun parse(key: String): HomeRoute? = if (key == "streaks") Streaks else null
+    }
+}
+
 /** Screens that open inside the Prevent tab. */
 sealed interface PreventRoute {
     data object Forecast : PreventRoute
@@ -65,17 +77,21 @@ sealed interface PreventRoute {
 
 /** Screens that open inside the Recover tab. */
 sealed interface RecoverRoute {
+    /** Recovery details for one overdraft-causing charge. */
+    data class Recovery(val transactionId: String) : RecoverRoute
     data class Fee(val feeId: String) : RecoverRoute
     data class Letter(val feeId: String) : RecoverRoute
 
     val key: String
         get() = when (this) {
+            is Recovery -> "recovery:$transactionId"
             is Fee -> "fee:$feeId"
             is Letter -> "letter:$feeId"
         }
 
     companion object {
         fun parse(key: String): RecoverRoute? = when {
+            key.startsWith("recovery:") -> Recovery(key.removePrefix("recovery:"))
             key.startsWith("fee:") -> Fee(key.removePrefix("fee:"))
             key.startsWith("letter:") -> Letter(key.removePrefix("letter:"))
             else -> null
@@ -88,16 +104,21 @@ sealed interface DiscoverRoute {
     data class Compare(val optionId: String) : DiscoverRoute
     data object Calculator : DiscoverRoute
 
+    /** The selected bank's simulated account-opening page, for one referral. */
+    data class OpenAccount(val referralId: String) : DiscoverRoute
+
     val key: String
         get() = when (this) {
             is Compare -> "compare:$optionId"
             Calculator -> "calculator"
+            is OpenAccount -> "open:$referralId"
         }
 
     companion object {
         fun parse(key: String): DiscoverRoute? = when {
             key.startsWith("compare:") -> Compare(key.removePrefix("compare:"))
             key == "calculator" -> Calculator
+            key.startsWith("open:") -> OpenAccount(key.removePrefix("open:"))
             else -> null
         }
     }

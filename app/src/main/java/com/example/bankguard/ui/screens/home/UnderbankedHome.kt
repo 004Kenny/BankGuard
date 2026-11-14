@@ -1,6 +1,8 @@
 package com.example.bankguard.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
+import com.example.bankguard.domain.streaks.StreakSummary
+import com.example.bankguard.ui.screens.streaks.StreakHomeCard
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -25,6 +27,8 @@ import com.example.bankguard.R
 import com.example.bankguard.data.demo.DemoProfile
 import com.example.bankguard.data.demo.DemoProfiles
 import com.example.bankguard.domain.forecast.CashFlowForecaster
+import com.example.bankguard.domain.recovery.OverdraftDetector
+import com.example.bankguard.ui.screens.shared.OverdrawnAlert
 import com.example.bankguard.model.ScheduledItem
 import com.example.bankguard.model.ScheduledKind
 import com.example.bankguard.model.TransactionStatus
@@ -59,6 +63,8 @@ internal fun UnderbankedHome(
     profile: DemoProfile,
     onOpenTab: (BankGuardTab) -> Unit,
     onOpenForecast: () -> Unit,
+    streak: StreakSummary,
+    onOpenStreaks: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val account = checkNotNull(profile.account) { "Underbanked profile needs an account" }
@@ -113,9 +119,12 @@ internal fun UnderbankedHome(
             }
         }
 
-        // Overdraft risk, or reassurance when there is none
+        // An overdraft that already happened, else the risk of one, else reassurance
+        val overdraft = remember(profile) { OverdraftDetector.find(profile) }
         val dip = forecast.firstNegativeDay
-        if (dip != null && nextBill != null) {
+        if (overdraft != null) {
+            OverdrawnAlert(overdraft, onOpenRecover = { onOpenTab(BankGuardTab.Recover) })
+        } else if (dip != null && nextBill != null) {
             AlertCard(
                 title = stringResource(R.string.ub_risk_title),
                 body = stringResource(R.string.ub_risk_body, nextBill.title, nextBill.amount.absolute.format(), available.format(), forecast.lowest.balance.format()),
@@ -140,6 +149,8 @@ internal fun UnderbankedHome(
             )
         }
 
+        StreakHomeCard(streak, onViewAchievements = onOpenStreaks)
+
         // Shortcuts into the three pillars
         SectionHeader(title = stringResource(R.string.ub_tools_title))
         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), modifier = Modifier.height(IntrinsicSize.Min)) {
@@ -162,7 +173,13 @@ internal fun UnderbankedHome(
                     subtitle = res.relativeDay(t.dayOffset),
                     amount = t.amount.formatSigned(),
                     amountTone = t.amount.tone(),
-                    amountCaption = stringResource(if (t.status == TransactionStatus.Pending) R.string.ub_pending else R.string.ub_posted),
+                    amountCaption = stringResource(
+                        when (t.status) {
+                            TransactionStatus.Pending -> R.string.ub_pending
+                            TransactionStatus.Posted -> R.string.ub_posted
+                            TransactionStatus.Released -> R.string.ub_released
+                        },
+                    ),
                 )
             }
         }
@@ -190,5 +207,12 @@ private fun HeroScheduledRow(label: String, item: ScheduledItem, whenText: Strin
 @Preview(showBackground = true, heightDp = 1900)
 @Composable
 private fun UnderbankedHomePreview() {
-    BankGuardTheme { UnderbankedHome(DemoProfiles.underbanked, onOpenTab = {}, onOpenForecast = {}) }
+    BankGuardTheme { UnderbankedHome(
+            DemoProfiles.underbanked, onOpenTab = {}, onOpenForecast = {},
+            streak = com.example.bankguard.domain.streaks.StreakEngine.summarize(
+                com.example.bankguard.data.demo.DemoStreakHistory.lowestBalances,
+                com.example.bankguard.data.demo.DemoStreakHistory.START_DAY,
+            ),
+            onOpenStreaks = {},
+        ) }
 }

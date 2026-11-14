@@ -33,10 +33,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.bankguard.data.demo.AccountScenario
 import com.example.bankguard.data.demo.DemoAccountOptions
 import com.example.bankguard.data.demo.DemoProfile
 import com.example.bankguard.data.demo.DemoProfiles
 import com.example.bankguard.data.simulated.SimulatedBankMode
+import com.example.bankguard.domain.recovery.OverdraftDetector
 import com.example.bankguard.model.CancellationStatus
 import com.example.bankguard.model.DemoPersona
 import com.example.bankguard.model.FeeRecovery
@@ -44,11 +46,16 @@ import com.example.bankguard.model.SavingsInputs
 import com.example.bankguard.model.WaiverReason
 import com.example.bankguard.ui.components.BankGuardTopBar
 import com.example.bankguard.ui.navigation.DiscoverRoute
+import com.example.bankguard.ui.navigation.HomeRoute
+import com.example.bankguard.ui.screens.streaks.StreakScreen
+import com.example.bankguard.domain.streaks.StreakSummary
 import com.example.bankguard.ui.navigation.PreventRoute
 import com.example.bankguard.ui.navigation.RecoverRoute
 import com.example.bankguard.ui.navigation.TabBackStack
 import com.example.bankguard.ui.navigation.rememberTabBackStack
 import com.example.bankguard.ui.screens.discover.AccountComparisonScreen
+import com.example.bankguard.ui.screens.discover.AccountOpeningScreen
+import com.example.bankguard.model.ReferralRecord
 import com.example.bankguard.ui.screens.discover.DiscoverScreen
 import com.example.bankguard.ui.screens.discover.SavingsCalculatorScreen
 import com.example.bankguard.ui.screens.home.HomeScreen
@@ -59,6 +66,8 @@ import com.example.bankguard.ui.screens.prevent.ForecastDetailScreen
 import com.example.bankguard.ui.screens.prevent.PreventScreen
 import com.example.bankguard.ui.screens.recover.FeeDetailScreen
 import com.example.bankguard.ui.screens.recover.RecoverScreen
+import com.example.bankguard.ui.screens.recover.RecoveryDetailScreen
+import com.example.bankguard.ui.screens.recover.RecoveryUiState
 import com.example.bankguard.ui.screens.recover.WaiverLetterScreen
 import com.example.bankguard.ui.screens.settings.AboutScreen
 import com.example.bankguard.ui.screens.settings.DemoProfileSheet
@@ -81,6 +90,13 @@ fun BankGuardApp(
     val bankMode by session.bankMode.collectAsState()
     val recoveries by session.recoveries.collectAsState()
     val savingsInputs by session.savingsInputs.collectAsState()
+    val scenario by session.scenario.collectAsState()
+    val recoveryRecords by session.recoveryRecords.collectAsState()
+    val eligibility by session.eligibility.collectAsState()
+    val statusChecks by session.statusChecks.collectAsState()
+    val referrals by session.referrals.collectAsState()
+    val streak by session.streak.collectAsState()
+    val lastCompletedDay by session.lastCompletedDay.collectAsState()
 
     // Welcome intro -> persona selection -> tabbed app. Keyed on persona and intro state.
     Crossfade(targetState = persona to introSeen, label = "onboarding", modifier = modifier) { (active, seen) ->
@@ -96,13 +112,28 @@ fun BankGuardApp(
                 onRequestCancellation = session::requestCancellation,
                 onSetBankMode = session::setBankMode,
                 recoveries = recoveries,
+                recovery = RecoveryUiState(
+                    // Only this scenario's requests; other scenarios keep theirs for when they're loaded again.
+                    records = recoveryRecords.filterValues { it.scenarioKey == scenario.key },
+                    eligibility = eligibility,
+                    statusChecks = statusChecks,
+                    scenario = scenario,
+                ),
                 savingsInputs = savingsInputs[active] ?: DemoAccountOptions.defaultInputs(active),
                 onSavingsInputsChange = { inputs -> session.setSavingsInputs(active, inputs) },
                 onResetSavingsInputs = { session.resetSavingsInputs(active) },
+                referrals = referrals,
+                streak = StreakUiState(streak, lastCompletedDay, session::completeDemoDay, session::dismissCompletedDay),
+                onStartReferral = session::startReferral,
+                onContinueReferral = session::continueReferral,
                 recoverActions = RecoverActions(
                     onSaveLetter = session::saveLetter,
                     onMarkSent = session::markSent,
                     onRecordDecision = session::recordDecision,
+                    onCheckEligibility = session::checkRecoveryEligibility,
+                    onRequestRecovery = session::requestRecovery,
+                    onRefreshStatus = session::refreshRecoveryStatus,
+                    onSetScenario = session::setScenario,
                 ),
                 onSwitchPersona = session::selectPersona,
                 onResetDemo = session::resetDemo,
@@ -128,10 +159,15 @@ private fun BankGuardMain(
     onRequestCancellation: (String) -> Unit,
     onSetBankMode: (SimulatedBankMode) -> Unit,
     recoveries: Map<String, FeeRecovery>,
+    recovery: RecoveryUiState,
     recoverActions: RecoverActions,
     savingsInputs: SavingsInputs,
     onSavingsInputsChange: (SavingsInputs) -> Unit,
     onResetSavingsInputs: () -> Unit,
+    referrals: Map<String, ReferralRecord>,
+    streak: StreakUiState,
+    onStartReferral: (accountId: String) -> String?,
+    onContinueReferral: (referralId: String) -> Unit,
     onSwitchPersona: (DemoPersona) -> Unit,
     onResetDemo: () -> Unit,
     modifier: Modifier = Modifier,
@@ -183,15 +219,35 @@ private fun BankGuardMain(
             }
         } else screenStateHolder.SaveableStateProvider(key = "${selectedTab.name}/${route ?: "main"}") {
             when (selectedTab) {
-                BankGuardTab.Home -> HomeScreen(
-                    profile = profile,
-                    onOpenTab = { tab -> selectedTab = tab },
-                    onOpenForecast = {
-                        selectedTab = BankGuardTab.Prevent
-                        stacks.getValue(BankGuardTab.Prevent).push(PreventRoute.Forecast.key)
-                    },
-                    modifier = screenModifier,
-                )
+                BankGuardTab.Home -> when (route?.let(HomeRoute::parse)) {
+                    HomeRoute.Streaks -> if (profile.persona == DemoPersona.Underbanked) {
+                        StreakScreen(
+                            summary = streak.summary,
+                            lastCompletedDay = streak.lastCompletedDay,
+                            onCompleteDemoDay = streak.onCompleteDemoDay,
+                            onDismissResult = streak.onDismissResult,
+                            onBack = {
+                                streak.onDismissResult()
+                                stack.pop()
+                            },
+                            modifier = screenModifier,
+                        )
+                    } else {
+                        // No account, no streak: never show it for the unbanked persona.
+                        LaunchedEffect(Unit) { stack.popToRoot() }
+                    }
+                    null -> HomeScreen(
+                        profile = profile,
+                        onOpenTab = { tab -> selectedTab = tab },
+                        onOpenForecast = {
+                            selectedTab = BankGuardTab.Prevent
+                            stacks.getValue(BankGuardTab.Prevent).push(PreventRoute.Forecast.key)
+                        },
+                        streak = streak.summary,
+                        onOpenStreaks = { stack.push(HomeRoute.Streaks.key) },
+                        modifier = screenModifier,
+                    )
+                }
                 BankGuardTab.Prevent -> PreventTab(
                     route = route?.let(PreventRoute::parse),
                     profile = profile,
@@ -205,6 +261,7 @@ private fun BankGuardMain(
                     route = route?.let(RecoverRoute::parse),
                     profile = profile,
                     recoveries = recoveries,
+                    recovery = recovery,
                     actions = recoverActions,
                     stack = stack,
                     onOpenTab = { tab -> selectedTab = tab },
@@ -216,6 +273,9 @@ private fun BankGuardMain(
                     inputs = savingsInputs,
                     onInputsChange = onSavingsInputsChange,
                     onResetInputs = onResetSavingsInputs,
+                    referrals = referrals,
+                    onStartReferral = onStartReferral,
+                    onContinueReferral = onContinueReferral,
                     stack = stack,
                     modifier = screenModifier,
                 )
@@ -274,7 +334,7 @@ private fun PreventTab(
         }
         is PreventRoute.Cancellation -> {
             // Look the charge up in the original data: once approved, it's gone from the live profile.
-            val transaction = DemoProfiles.forPersona(profile.persona).transactions
+            val transaction = DemoProfiles.forScenario(profile.persona, profile.scenario).transactions
                 .firstOrNull { it.id == route.transactionId }
             if (transaction == null || profile.account == null) {
                 LaunchedEffect(route) { stack.pop() }
@@ -300,6 +360,9 @@ private fun DiscoverTab(
     inputs: SavingsInputs,
     onInputsChange: (SavingsInputs) -> Unit,
     onResetInputs: () -> Unit,
+    referrals: Map<String, ReferralRecord>,
+    onStartReferral: (accountId: String) -> String?,
+    onContinueReferral: (referralId: String) -> Unit,
     stack: TabBackStack,
     modifier: Modifier,
 ) {
@@ -317,7 +380,30 @@ private fun DiscoverTab(
             if (option == null) {
                 LaunchedEffect(route) { stack.pop() }
             } else {
-                AccountComparisonScreen(option, profile, inputs, onAdjust = openCalculator, onBack = stack::pop, modifier = modifier)
+                AccountComparisonScreen(
+                    option, profile, inputs,
+                    onAdjust = openCalculator,
+                    // Each tap is a new simulated referral, tied to this account and its bank.
+                    onOpenAccount = { onStartReferral(option.id)?.let { id -> stack.push(DiscoverRoute.OpenAccount(id).key) } },
+                    onBack = stack::pop,
+                    modifier = modifier,
+                )
+            }
+        }
+        is DiscoverRoute.OpenAccount -> {
+            val referral = referrals[route.referralId]
+            val option = referral?.let { r -> DemoAccountOptions.all.firstOrNull { it.id == r.accountId } }
+            if (referral == null || option == null) {
+                LaunchedEffect(route) { stack.pop() }
+            } else {
+                AccountOpeningScreen(
+                    option = option,
+                    referral = referral,
+                    onContinueToBank = { onContinueReferral(referral.referralId) },
+                    onBackToDiscover = stack::popToRoot,
+                    onBack = stack::pop,
+                    modifier = modifier,
+                )
             }
         }
         DiscoverRoute.Calculator -> SavingsCalculatorScreen(
@@ -331,11 +417,23 @@ private fun DiscoverTab(
     }
 }
 
+/** Overdraft-free streak state and the demo-day controls, for Home and the Achievements screen. */
+data class StreakUiState(
+    val summary: StreakSummary,
+    val lastCompletedDay: CompletedDay?,
+    val onCompleteDemoDay: () -> Unit,
+    val onDismissResult: () -> Unit,
+)
+
 /** What the Recover screens can change in the demo session. */
 data class RecoverActions(
     val onSaveLetter: (feeId: String, letter: String, reasons: Set<WaiverReason>) -> Unit,
     val onMarkSent: (feeId: String) -> Unit,
     val onRecordDecision: (feeId: String, refunded: Boolean) -> Unit,
+    val onCheckEligibility: (transactionId: String) -> Unit = {},
+    val onRequestRecovery: (transactionId: String, feeConsent: Boolean) -> Unit = { _, _ -> },
+    val onRefreshStatus: (transactionId: String) -> Unit = {},
+    val onSetScenario: (AccountScenario) -> Unit = {},
 )
 
 /** The Recover tab's main screen or whichever Recover sub-screen is on top of its stack. */
@@ -344,43 +442,71 @@ private fun RecoverTab(
     route: RecoverRoute?,
     profile: DemoProfile,
     recoveries: Map<String, FeeRecovery>,
+    recovery: RecoveryUiState,
     actions: RecoverActions,
     stack: TabBackStack,
     onOpenTab: (BankGuardTab) -> Unit,
     modifier: Modifier,
 ) {
-    val fee = when (route) {
-        is RecoverRoute.Fee -> profile.bankFees.firstOrNull { it.id == route.feeId }
-        is RecoverRoute.Letter -> profile.bankFees.firstOrNull { it.id == route.feeId }
-        null -> null
-    }
     val account = profile.account
-    when {
-        route == null -> RecoverScreen(
+    when (route) {
+        null -> RecoverScreen(
             profile = profile,
-            recoveries = recoveries,
+            recovery = recovery,
+            feeRecoveries = recoveries,
+            onOpenRecovery = { id -> stack.push(RecoverRoute.Recovery(id).key) },
             onOpenFee = { id -> stack.push(RecoverRoute.Fee(id).key) },
+            onSetScenario = actions.onSetScenario,
             onOpenTab = onOpenTab,
             modifier = modifier,
         )
-        fee == null || account == null -> LaunchedEffect(route) { stack.pop() }
-        route is RecoverRoute.Fee -> FeeDetailScreen(
-            fee = fee,
-            recovery = recoveries[fee.id],
-            onOpenLetter = { stack.push(RecoverRoute.Letter(fee.id).key) },
-            onMarkSent = { actions.onMarkSent(fee.id) },
-            onRecordDecision = { refunded -> actions.onRecordDecision(fee.id, refunded) },
-            onBack = stack::pop,
-            modifier = modifier,
-        )
-        route is RecoverRoute.Letter -> WaiverLetterScreen(
-            fee = fee,
-            account = account,
-            recovery = recoveries[fee.id],
-            onSave = { letter, reasons -> actions.onSaveLetter(fee.id, letter, reasons) },
-            onBack = stack::pop,
-            modifier = modifier,
-        )
+        is RecoverRoute.Recovery -> {
+            // The charge as originally loaded: its live status changes once a hold is released.
+            val transaction = DemoProfiles.forScenario(profile.persona, profile.scenario).transactions
+                .firstOrNull { it.id == route.transactionId }
+            if (transaction == null || account == null) {
+                LaunchedEffect(route) { stack.pop() }
+            } else {
+                RecoveryDetailScreen(
+                    transaction = transaction,
+                    cause = OverdraftDetector.find(profile)?.takeIf { it.transaction.id == transaction.id },
+                    record = recovery.records[transaction.id],
+                    check = recovery.eligibility[transaction.id],
+                    checkingStatus = transaction.id in recovery.statusChecks,
+                    onCheckEligibility = { actions.onCheckEligibility(transaction.id) },
+                    onRequest = { consent -> actions.onRequestRecovery(transaction.id, consent) },
+                    onRefreshStatus = { actions.onRefreshStatus(transaction.id) },
+                    onOpenFeeHelp = stack::popToRoot,
+                    onOpenPrevent = { onOpenTab(BankGuardTab.Prevent) },
+                    onBack = stack::pop,
+                    modifier = modifier,
+                )
+            }
+        }
+        is RecoverRoute.Fee, is RecoverRoute.Letter -> {
+            val feeId = if (route is RecoverRoute.Fee) route.feeId else (route as RecoverRoute.Letter).feeId
+            val fee = profile.bankFees.firstOrNull { it.id == feeId }
+            when {
+                fee == null || account == null -> LaunchedEffect(route) { stack.pop() }
+                route is RecoverRoute.Fee -> FeeDetailScreen(
+                    fee = fee,
+                    recovery = recoveries[fee.id],
+                    onOpenLetter = { stack.push(RecoverRoute.Letter(fee.id).key) },
+                    onMarkSent = { actions.onMarkSent(fee.id) },
+                    onRecordDecision = { refunded -> actions.onRecordDecision(fee.id, refunded) },
+                    onBack = stack::pop,
+                    modifier = modifier,
+                )
+                else -> WaiverLetterScreen(
+                    fee = fee,
+                    account = account,
+                    recovery = recoveries[fee.id],
+                    onSave = { letter, reasons -> actions.onSaveLetter(fee.id, letter, reasons) },
+                    onBack = stack::pop,
+                    modifier = modifier,
+                )
+            }
+        }
     }
 }
 
@@ -431,10 +557,21 @@ private fun BankGuardMainPreview() {
             onRequestCancellation = {},
             onSetBankMode = {},
             recoveries = emptyMap(),
+            recovery = RecoveryUiState(),
             recoverActions = RecoverActions({ _, _, _ -> }, {}, { _, _ -> }),
             savingsInputs = DemoAccountOptions.defaultInputs(DemoPersona.Underbanked),
             onSavingsInputsChange = {},
             onResetSavingsInputs = {},
+            referrals = emptyMap(),
+            streak = StreakUiState(
+                com.example.bankguard.domain.streaks.StreakEngine.summarize(
+                    com.example.bankguard.data.demo.DemoStreakHistory.lowestBalances,
+                    com.example.bankguard.data.demo.DemoStreakHistory.START_DAY,
+                ),
+                null, {}, {},
+            ),
+            onStartReferral = { null },
+            onContinueReferral = {},
             onSwitchPersona = {},
             onResetDemo = {},
         )

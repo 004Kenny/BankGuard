@@ -35,6 +35,8 @@ data class DemoProfile(
     val altServiceCharges: List<AltServiceCharge>,
     val envelopes: List<Envelope>,
     val prepaidCardBalance: Money?,
+    /** Which simulated account state this is. Only the underbanked persona has more than one. */
+    val scenario: AccountScenario = AccountScenario.UpcomingBill,
 ) {
     val pendingTransactions: List<Transaction>
         get() = transactions.filter { it.status == TransactionStatus.Pending }
@@ -51,6 +53,15 @@ object DemoProfiles {
 
     fun forPersona(persona: DemoPersona): DemoProfile = when (persona) {
         DemoPersona.Underbanked -> underbanked
+        DemoPersona.Unbanked -> unbanked
+    }
+
+    /**
+     * The persona's data in the chosen account scenario, before any demo action. The unbanked
+     * persona has no account, so it ignores the scenario (no overdraft is ever invented for it).
+     */
+    fun forScenario(persona: DemoPersona, scenario: AccountScenario): DemoProfile = when (persona) {
+        DemoPersona.Underbanked -> DemoScenarios.underbanked(scenario)
         DemoPersona.Unbanked -> unbanked
     }
 

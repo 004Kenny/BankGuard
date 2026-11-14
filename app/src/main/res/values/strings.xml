@@ -34,11 +34,11 @@
 
     <!-- Welcome and feature intro -->
     <string name="intro_welcome_title">Welcome to BankGuard</string>
-    <string name="intro_welcome_body">Free tools to help you avoid bank fees, get back fees you\'ve paid, and find accounts that cost less.</string>
+    <string name="intro_welcome_body">Free tools to help you avoid overdrafts, recover money after one, and find accounts that cost less.</string>
     <string name="intro_prevent_title">See trouble coming</string>
     <string name="intro_prevent_body">Forecast your balance, get warned before an overdraft, and ask to cancel eligible pending charges.</string>
-    <string name="intro_recover_title">Ask for fees back</string>
-    <string name="intro_recover_body">Understand each fee, then send your bank a letter you\'ve read and edited. Your bank makes the decision.</string>
+    <string name="intro_recover_title">Recover after an overdraft</string>
+    <string name="intro_recover_body">If a charge overdraws your account, check whether it can be reversed through a participating bank. You see the exact fee first and approve every request.</string>
     <string name="intro_discover_title">Find a cheaper account</string>
     <string name="intro_discover_body">Compare low-fee accounts and see what you could save over check cashers and prepaid cards.</string>
     <string name="intro_skip">Skip</string>
@@ -49,7 +49,7 @@
     <!-- Demo personas -->
     <string name="persona_underbanked_title">I have a bank account</string>
     <string name="persona_underbanked_mode">Underbanked profile</string>
-    <string name="persona_underbanked_body">Explore balance forecasts, overdraft warnings and help asking your bank to refund fees.</string>
+    <string name="persona_underbanked_body">Explore balance forecasts, overdraft warnings, and recovery of a charge that overdrew the account.</string>
     <string name="persona_underbanked_preloaded">Preloaded with a sample checking account, upcoming bills, pending charges and three sample bank fees.</string>
     <string name="persona_unbanked_title">I don\'t have a bank account</string>
     <string name="persona_unbanked_mode">Unbanked profile</string>
@@ -59,7 +59,7 @@
     <!-- Onboarding: demo profile selection -->
     <string name="onboarding_pillars">PREVENT  •  RECOVER  •  DISCOVER</string>
     <string name="onboarding_pillars_cd">Prevent, Recover, Discover</string>
-    <string name="onboarding_body">Your money deserves protection. Stay ahead of unexpected fees, get help asking for refunds, and find banking options that cost less.</string>
+    <string name="onboarding_body">Your money deserves protection. Stay ahead of overdrafts, recover money when a charge overdraws you, and find banking options that cost less.</string>
     <string name="onboarding_choose">Choose a demo profile</string>
     <string name="onboarding_notice">Demo profiles use fictional financial information. BankGuard is a financial assistance app, not a bank, and it isn\'t connected to any bank.</string>
     <string name="onboarding_enter">Enter BankGuard demo</string>
@@ -208,7 +208,7 @@
 
     <!-- Profile sheet: simulated bank -->
     <string name="profile_bank_title">Simulate declined requests</string>
-    <string name="profile_bank_body">Turn on to demo what happens when the simulated partner bank says no to a cancellation request.</string>
+    <string name="profile_bank_body">Turn on to demo what happens when the simulated partner bank says no to a cancellation or recovery request.</string>
 
     <!-- Fee explanations -->
     <string name="fee_overdraft_name">Overdraft fee</string>
@@ -222,28 +222,12 @@
     <string name="fee_atm_avoid">Use ATMs in your bank\'s network, or get cash back with a purchase at a store.</string>
 
     <!-- Recover: underbanked -->
-    <string name="rc_hero_label">Fees found in your demo account</string>
-    <plurals name="rc_hero_count">
-        <item quantity="one">%d fee in the last 30 days</item>
-        <item quantity="other">%d fees in the last 30 days</item>
-    </plurals>
-    <string name="rc_hero_note">Your bank decides whether to refund them. BankGuard helps you ask.</string>
-    <string name="rc_reported_refunds">Refunds you\'ve reported: %1$s</string>
-    <string name="rc_fees_title">Fees you can ask about</string>
     <string name="rc_charged">Charged %1$s</string>
-    <string name="rc_action_start">Explain and ask for a refund</string>
-    <string name="rc_action_continue">Continue your request</string>
-    <string name="rc_action_view">View details</string>
     <string name="stage_found">Not started</string>
     <string name="stage_drafted">Letter drafted</string>
     <string name="stage_sent">Sent by you</string>
     <string name="stage_refunded">Refunded (you reported)</string>
     <string name="stage_not_refunded">Not refunded</string>
-    <string name="rc_how_title">How this works</string>
-    <string name="rc_how_1">Read why each fee was charged.</string>
-    <string name="rc_how_2">Build a letter, edit it, and send it to your bank yourself.</string>
-    <string name="rc_how_3">Come back and record what your bank decided.</string>
-    <string name="rc_ai_note">AI-drafted letters are planned for a later version. For now, drafts come from a template you can edit.</string>
     <string name="rc_footer">Fees and amounts are fictional demo data. BankGuard never contacts your bank or sends anything for you, and can\'t guarantee a refund.</string>
 
     <!-- Recover: fee detail -->
@@ -381,6 +365,28 @@
     <string name="cmp_before_keep_open">Keep your old account open until your paycheck and bills have moved.</string>
     <string name="cmp_before_employer">Ask your employer how to set up direct deposit.</string>
     <string name="cmp_no_open">BankGuard can\'t open accounts, and these sample accounts don\'t exist. In a real version, this is where you\'d go to the bank\'s own website.</string>
+    <!-- Discover: simulated account opening and referral -->
+    <string name="ao_open_account">Open account</string>
+    <string name="ao_screen_title">Open account</string>
+    <string name="ao_demo_label">Demo account opening</string>
+    <string name="ao_heading">Open your account with %1$s</string>
+    <string name="ao_referred">You\'re starting an account application with %1$s, referred by BankGuard.</string>
+    <string name="ao_account_title">Your account</string>
+    <string name="ao_benefits_title">Account benefits</string>
+    <string name="ao_referral_title">Referral</string>
+    <string name="ao_referral_id">Referral ID</string>
+    <string name="ao_referral_source">Referred by</string>
+    <string name="ao_referral_source_bankguard">BankGuard</string>
+    <string name="ao_referral_status">Status</string>
+    <string name="ao_status_initiated">Started</string>
+    <string name="ao_status_continued">Continued to bank</string>
+    <string name="ao_referral_started">Started %1$s</string>
+    <string name="ao_referral_note">A referral isn\'t an opened account. Under BankGuard\'s proposed business model, a bank would pay a referral fee only if you opened a qualifying account. No fee has been earned.</string>
+    <string name="ao_continue">Continue to bank</string>
+    <string name="ao_simulation_note">This is a simulation. %1$s is fictional, nothing is sent anywhere, and BankGuard doesn\'t collect personal information or open accounts.</string>
+    <string name="ao_ready_title">You\'re ready to continue</string>
+    <string name="ao_ready_body">In a live version of BankGuard, you would now be redirected to %1$s to complete your account application. Your referral would be attributed to BankGuard.</string>
+    <string name="ao_back_to_discover">Back to Discover</string>
 
     <!-- Discover: savings calculator -->
     <string name="calc_title">Adjust your estimate</string>
@@ -408,9 +414,9 @@
     <string name="about_demo_title">Demo data</string>
     <string name="about_demo_body">Every person, bank, account, merchant and amount in this app is fictional.</string>
     <string name="about_partner_title">Simulated partner bank</string>
-    <string name="about_partner_body">Pending-charge cancellation uses a simulated partner bank that answers by fixed rules. BankGuard has no real bank integration, and real cancellations would depend on eligibility and the bank\'s approval.</string>
-    <string name="about_refunds_title">Fee refunds</string>
-    <string name="about_refunds_body">BankGuard never contacts your bank. You send any request yourself, and your bank decides whether to refund a fee.</string>
+    <string name="about_partner_body">Pending-charge cancellation and transaction recovery use a simulated partner bank that answers by fixed rules. BankGuard has no real bank integration or partnership, and real outcomes would depend on eligibility and the bank\'s approval.</string>
+    <string name="about_refunds_title">Recovery fee and bank fees</string>
+    <string name="about_refunds_body">The proposed recovery fee is 5% of your balance before the charge, shown before you agree and charged only if a recovery is confirmed. It\'s a prototype business model that needs legal, payments and bank-partnership review. For bank fees, you send any waiver request yourself and your bank decides.</string>
     <string name="about_letters_title">Waiver letters</string>
     <string name="about_letters_body">Letters are drafted from a template you review and edit. AI-drafted letters are planned for a later version and would still need your review.</string>
     <string name="about_estimates_title">Forecasts and savings</string>
@@ -424,4 +430,222 @@
     <string name="about_license_jetpack">Android Jetpack libraries are also used under the Apache License 2.0.</string>
     <string name="about_license_show">Show license</string>
     <string name="about_license_hide">Hide license</string>
+
+    <!-- Recover: post-overdraft transaction recovery -->
+    <string name="rv_hero_label">Transaction recovery</string>
+    <string name="rv_hero_title">Recover your money</string>
+    <string name="rv_hero_subtitle">Check whether an overdraft-causing transaction qualifies for recovery.</string>
+    <string name="rv_available">Available balance</string>
+    <string name="rv_status_label">Overdraft status</string>
+    <string name="rv_status_overdrawn">Overdrawn by %1$s</string>
+    <string name="rv_status_ok">Not overdrawn</string>
+    <string name="rv_stat_restored">Confirmed funds restored</string>
+    <string name="rv_stat_fees">BankGuard fees charged</string>
+    <string name="rv_stat_successful">Successful recoveries</string>
+    <string name="rv_stat_successful_value">%1$d of %2$d</string>
+    <string name="rv_opportunity_title">Recovery opportunity</string>
+    <string name="rv_opp_caused">Caused the overdraft · %1$s · %2$s</string>
+    <string name="rv_opp_overdraft">Overdraft amount</string>
+    <string name="rv_opp_estimated">Estimated recovery</string>
+    <string name="rv_opp_fee">Estimated BankGuard fee</string>
+    <string name="rv_check">Check recovery</string>
+    <string name="rv_view_request">View request</string>
+    <string name="rv_none_title">No overdraft on this account right now</string>
+    <string name="rv_none_body">Recover is for overdrafts that have already happened. Prevent watches for the ones coming up.</string>
+    <string name="rv_load_demo">Load the $150 overdraft demo</string>
+    <string name="rv_scenarios_title">Demo scenarios</string>
+    <string name="rv_scenarios_body">Each scenario replaces the simulated account across Home, Prevent and Recover. Reset demo returns to the original account.</string>
+    <string name="rv_sc_upcoming">Original account (no overdraft yet)</string>
+    <string name="rv_sc_upcoming_body">The Prevent story: a bill tomorrow could overdraw the account.</string>
+    <string name="rv_sc_a">A. Pending purchase, hold released</string>
+    <string name="rv_sc_a_body">A $150 pending purchase took $100 to -$50. The bank can release the hold.</string>
+    <string name="rv_sc_b">B. Posted purchase, reversed</string>
+    <string name="rv_sc_b_body">A posted $150 charge. The merchant agreed to a same-day reversal.</string>
+    <string name="rv_sc_c">C. Outside the reversal window</string>
+    <string name="rv_sc_c_body">A $150 charge posted 3 days ago. Not eligible for recovery.</string>
+    <string name="rv_sc_d">D. Bank rejects the request</string>
+    <string name="rv_sc_d_body">Looks eligible, but the bank says no when asked.</string>
+    <string name="rv_sc_e">E. Awaiting bank confirmation</string>
+    <string name="rv_sc_e_body">The bank accepts the request but hasn\'t confirmed the money moved.</string>
+    <string name="rv_history_title">Recovery history</string>
+    <string name="rv_history_empty">No recovery requests in this scenario yet.</string>
+    <string name="rv_h_restored">Restored</string>
+    <string name="rv_h_fee_assessed">Fee assessed</string>
+    <string name="rv_h_fee_collected">Fee collected</string>
+    <string name="rv_h_submitted">Submitted %1$s</string>
+    <string name="rv_feehelp_title">Need help with a bank fee?</string>
+    <string name="rv_feehelp_body">Explore available fee-waiver options and prepare a request for your bank. Your bank decides; BankGuard can\'t override its fee policy.</string>
+    <string name="rv_footer" formatted="false">The 5% recovery fee is a proposed prototype business model, not a bank-approved charge. It needs legal, payments and bank-partnership review before real use. Accounts, banks and outcomes here are simulated; no real money moves.</string>
+
+    <string name="rv_badge_not_checked">Not checked yet</string>
+    <string name="rv_badge_checking">Checking eligibility</string>
+    <string name="rv_badge_eligible">Eligible</string>
+    <string name="rv_badge_ineligible">Not eligible</string>
+    <string name="rv_badge_check_failed">Check failed</string>
+    <string name="rv_badge_submitted">Request submitted</string>
+    <string name="rv_badge_awaiting">Approved, awaiting confirmation</string>
+    <string name="rv_badge_released">Hold released</string>
+    <string name="rv_badge_reversed">Reversed</string>
+    <string name="rv_badge_rejected">Rejected</string>
+    <string name="rv_txn_pending">Pending</string>
+    <string name="rv_txn_posted">Posted</string>
+    <string name="rv_txn_released">Hold released</string>
+    <string name="rv_txn_reversed">Posted, then reversed by a credit</string>
+
+    <string name="rv_detail_title">Recovery details</string>
+    <string name="rv_d_date">Date</string>
+    <string name="rv_d_status">Status</string>
+    <string name="rv_d_before">Balance before this charge</string>
+    <string name="rv_d_after">Balance after this charge</string>
+    <string name="rv_d_eligibility">Recovery status</string>
+    <string name="rv_checking">Checking eligibility with the simulated partner bank…</string>
+    <string name="rv_check_failed_title">Eligibility check failed</string>
+    <string name="rv_retry">Try again</string>
+    <string name="rv_available_title">Recovery Available</string>
+    <string name="rv_mechanism_hold">Authorization hold release</string>
+    <string name="rv_mechanism_reversal">Posted transaction reversal</string>
+    <string name="rv_mechanism_label">Supported method: %1$s</string>
+    <string name="rv_b_transaction">Transaction</string>
+    <string name="rv_b_original_balance">Original balance</string>
+    <string name="rv_b_current">Current balance</string>
+    <string name="rv_b_potential">Potential recovery</string>
+    <string name="rv_b_fee">BankGuard service fee</string>
+    <string name="rv_b_final">Estimated final balance</string>
+    <string name="rv_fee_explainer">BankGuard charges %1$d%% of your account balance before this transaction, only if recovery succeeds: %1$d%% of %2$s = %3$s.</string>
+    <string name="rv_fee_not_amount">The fee is based on your balance before the charge, not on the %1$s charge itself.</string>
+    <string name="rv_fee_zero">Your balance before this charge was %1$s, so there is no BankGuard fee.</string>
+    <string name="rv_request">Request recovery</string>
+    <string name="rv_not_now">Not now</string>
+    <string name="rv_confirm_title">Confirm Recovery Request</string>
+    <string name="rv_confirm_txn">Transaction</string>
+    <string name="rv_confirm_expected">Expected recovery</string>
+    <string name="rv_confirm_fee">BankGuard service fee</string>
+    <string name="rv_confirm_terms">This request is subject to approval by the simulated partner bank. If recovery fails, no fee is charged.</string>
+    <string name="rv_confirm_consent">I agree to the proposed %1$s BankGuard fee (%2$d%% of my %3$s balance before this charge), charged only if the recovery is confirmed.</string>
+    <string name="rv_confirm_yes">Confirm Recovery</string>
+    <string name="rv_confirm_no">Cancel</string>
+    <string name="rv_processing_title">Processing Recovery Request</string>
+    <string name="rv_processing_body">Checking the request with the simulated partner bank.</string>
+    <string name="rv_pending_title">Recovery Pending</string>
+    <string name="rv_pending_status">The simulated bank accepted the request but hasn\'t confirmed that the money has moved.</string>
+    <string name="rv_pending_no_balance">No confirmed balance adjustment yet.</string>
+    <string name="rv_pending_no_fee">No recovery fee charged yet.</string>
+    <string name="rv_check_status">Check status</string>
+    <string name="rv_checking_status">Checking status…</string>
+    <string name="rv_confirmed_title">Recovery Confirmed</string>
+    <string name="rv_confirmed_body_hold">The simulated bank released the authorization hold on this purchase. It was never paid, so it no longer counts against your balance.</string>
+    <string name="rv_confirmed_body_reversal">The simulated bank reversed this charge with a separate credit. The original charge stays in your history.</string>
+    <string name="rv_r_original">Original transaction</string>
+    <string name="rv_r_released">Amount released</string>
+    <string name="rv_r_restored">Amount restored</string>
+    <string name="rv_r_original_balance">Original account balance</string>
+    <string name="rv_r_fee">BankGuard recovery fee</string>
+    <string name="rv_r_final">Final account balance</string>
+    <string name="rv_r_reference">Bank confirmation</string>
+    <string name="rv_r_request_ref">Request reference</string>
+    <string name="rv_r_txn_status">Transaction status</string>
+    <string name="rv_r_confirmed_at">Confirmed</string>
+    <string name="rv_r_fee_status">Fee status</string>
+    <string name="rv_fee_status_none">Not charged</string>
+    <string name="rv_fee_status_assessed">Due, being recorded</string>
+    <string name="rv_fee_status_collected">Collected (simulated)</string>
+    <string name="rv_fee_status_failed">Not collected</string>
+    <string name="rv_fee_failed">The fee couldn\'t be collected: %1$s It\'s recorded as not collected.</string>
+    <string name="rv_fee_separate">The fee is recorded as its own simulated charge, separate from the bank\'s reversal.</string>
+    <string name="rv_rejected_title">Recovery Unsuccessful</string>
+    <string name="rv_rejected_reason">Reason: %1$s</string>
+    <string name="rv_rejected_nothing">No funds were recovered.</string>
+    <string name="rv_rejected_fee">BankGuard fee: %1$s</string>
+    <string name="rv_ineligible_title">Immediate recovery isn\'t available</string>
+    <string name="rv_next_title">What you can do</string>
+    <string name="rv_next_merchant">Ask the merchant for a refund or to cancel the order.</string>
+    <string name="rv_next_bank">If the charge is a mistake or you didn\'t make it, contact your bank about a dispute.</string>
+    <string name="rv_next_fee">If your bank charged an overdraft fee, BankGuard can help you ask for a waiver.</string>
+    <string name="rv_next_deposit">Add money to bring the balance back above zero.</string>
+    <string name="rv_open_fee_help">Get help with a bank fee</string>
+    <string name="rv_open_prevent">See what\'s coming up in Prevent</string>
+    <string name="rv_not_cause">This charge isn\'t causing an overdraft right now, so there\'s nothing to recover.</string>
+    <string name="rv_done">Done</string>
+
+    <string name="ub_overdrawn_title">Your account is overdrawn</string>
+    <string name="ub_overdrawn_body">%1$s (%2$s) took your available balance from %3$s to %4$s. Recover can check whether it qualifies for recovery.</string>
+    <string name="ub_overdrawn_badge">Overdrawn</string>
+    <string name="ub_overdrawn_action">Check recovery</string>
+    <string name="ub_released">Released</string>
+    <string name="profile_outage_title">Simulate a bank outage</string>
+    <string name="profile_outage_body">Turn on to demo a failed recovery eligibility check.</string>
+    <string name="rcu_recovery_title">Transaction recovery needs a bank account</string>
+    <string name="rcu_recovery_body">Recover can help reverse a charge that overdrew an account at a participating bank. Jordan has no bank account in this demo, so there\'s no transaction to recover and none is invented. The bigger saving is avoiding the fees below.</string>
+
+    <!-- Overdraft-free streaks (underbanked Home and Achievements screen) -->
+    <string name="sk_card_title">Your overdraft-free streak</string>
+    <plurals name="sk_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+    <plurals name="sk_stars">
+        <item quantity="one">%1$d star</item>
+        <item quantity="other">%1$d stars</item>
+    </plurals>
+    <string name="sk_label_streak">Current streak</string>
+    <string name="sk_label_stars">Total stars</string>
+    <string name="sk_label_longest">Longest streak</string>
+    <string name="sk_label_next">Next milestone</string>
+    <plurals name="sk_msg_streak">
+        <item quantity="one">Nice start! You stayed overdraft-free yesterday.</item>
+        <item quantity="other">Great work! You\'ve stayed overdraft-free for %1$d days in a row.</item>
+    </plurals>
+    <plurals name="sk_msg_restart">
+        <item quantity="one">One difficult day doesn\'t erase your progress. Your %1$d star is still yours, and a new streak starts with your next overdraft-free day.</item>
+        <item quantity="other">One difficult day doesn\'t erase your progress. Your %1$d stars are still yours, and a new streak starts with your next overdraft-free day.</item>
+    </plurals>
+    <string name="sk_msg_first">Every overdraft-free day counts. Finish a day with your balance at $0.00 or above to earn your first star.</string>
+    <string name="sk_next_badge">Next achievement: %1$s · %2$s</string>
+    <string name="sk_progress_value">%1$d/%2$d</string>
+    <string name="sk_all_unlocked">Every achievement unlocked. Keep it going!</string>
+    <string name="sk_view">View achievements</string>
+    <string name="sk_rule">You earn one star for each completed day your available balance stays at $0.00 or above. Predicted dips don\'t count against you; only a balance that actually goes negative does.</string>
+
+    <string name="sk_screen_title">Achievements</string>
+    <string name="sk_recent_title">Last 7 days</string>
+    <string name="sk_today">Today</string>
+    <string name="sk_status_free">Overdraft-free, 1 star</string>
+    <string name="sk_status_overdraft">Overdraft, no star</string>
+    <string name="sk_status_unknown">No balance information, no star</string>
+    <string name="sk_status_progress">In progress</string>
+    <string name="sk_legend_free">Overdraft-free</string>
+    <string name="sk_legend_overdraft">Overdraft</string>
+    <string name="sk_legend_unknown">Unknown</string>
+    <string name="sk_legend_progress">In progress</string>
+    <string name="sk_badges_title">Achievement collection</string>
+    <string name="sk_badge_unlocked">Unlocked</string>
+    <string name="sk_badge_locked">Locked</string>
+    <string name="sk_badge_requirement">%1$d-day streak</string>
+    <string name="sk_encourage_title">Building better habits</string>
+    <string name="sk_encourage_1">Every overdraft-free day counts.</string>
+    <string name="sk_encourage_2">You\'re building stronger financial habits.</string>
+    <string name="sk_encourage_3">One difficult day doesn\'t erase your progress.</string>
+    <string name="sk_recover_note">If a charge overdraws your account and BankGuard later recovers it, that day still counts as an overdraft day. Recovering money doesn\'t rewrite what happened.</string>
+
+    <string name="sk_demo_title">Demo simulation</string>
+    <string name="sk_demo_body">Ends the simulated day and starts the next one. The day is judged on the lowest available balance seen during it, so a star is earned only if the balance never went below $0.00. Pressing this doesn\'t award anything by itself, and a live version wouldn\'t have it.</string>
+    <string name="sk_demo_button">Complete demo day</string>
+    <string name="sk_demo_history_note">The six days before the demo starts are sample balance history. Stars aren\'t money and can\'t be redeemed.</string>
+
+    <string name="sk_badge_getting_started">Getting Started</string>
+    <string name="sk_badge_money_guardian">Money Guardian</string>
+    <string name="sk_badge_balance_protector">Balance Protector</string>
+    <string name="sk_badge_overdraft_champion">Overdraft Champion</string>
+    <string name="sk_badge_financial_guardian">Financial Guardian</string>
+    <string name="sk_badge_legend">BankGuard Legend</string>
+
+    <string name="sk_celebrate_label">Achievement unlocked</string>
+    <string name="sk_celebrate_body">%1$s: you reached a %2$d-day overdraft-free streak.</string>
+    <string name="sk_day_star">Day complete: +1 star</string>
+    <string name="sk_day_star_body">Your balance stayed at $0.00 or above all day.</string>
+    <string name="sk_day_overdraft">Day complete: no star this time</string>
+    <string name="sk_day_overdraft_body">Your balance went below $0.00 during the day, so your streak starts again. Your earlier stars and achievements stay.</string>
+    <string name="sk_day_unknown">Day complete: no star</string>
+    <string name="sk_day_unknown_body">There wasn\'t verified balance information for that day.</string>
+    <string name="sk_dismiss">Dismiss</string>
 </resources>

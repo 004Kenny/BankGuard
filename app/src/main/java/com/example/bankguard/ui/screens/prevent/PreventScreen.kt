@@ -23,7 +23,7 @@ fun PreventScreen(
     modifier: Modifier = Modifier,
 ) {
     when (profile.persona) {
-        DemoPersona.Underbanked -> UnderbankedPrevent(profile, cancellations, onOpenForecast, onOpenCancellation, modifier)
+        DemoPersona.Underbanked -> UnderbankedPrevent(profile, cancellations, onOpenForecast, onOpenCancellation, onOpenTab, modifier)
         DemoPersona.Unbanked -> UnbankedPrevent(profile, onOpenTab, modifier)
     }
 }

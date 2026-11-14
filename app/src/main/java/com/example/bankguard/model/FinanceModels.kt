@@ -18,7 +18,13 @@ data class BankAccount(
     val outOfNetworkAtmFee: Money,
 )
 
-enum class TransactionStatus { Posted, Pending }
+enum class TransactionStatus {
+    Posted,
+    Pending,
+
+    /** A pending charge whose authorization hold the bank released. Kept for history; counts toward nothing. */
+    Released,
+}
 
 /** Whether the user may ask the (simulated) partner bank to cancel a pending charge. */
 sealed interface CancellationEligibility {
@@ -34,11 +40,13 @@ data class Transaction(
     val amount: Money,
     val dayOffset: Int,
     val status: TransactionStatus,
-    /** Only set for pending charges. */
+    /** Only set for pending charges that Prevent may offer to cancel. */
     val cancellation: CancellationEligibility? = null,
+    /** Demo fixture read only by the simulated partner bank. Null means the bank has no recovery path. */
+    val recoveryRule: SimulatedRecoveryRule? = null,
 )
 
-enum class TransactionCategory { Groceries, Dining, Shopping, Subscriptions, Utilities, Housing, Income, Transport, Fees, Other }
+enum class TransactionCategory { Groceries, Dining, Shopping, Subscriptions, Utilities, Housing, Income, Transport, Fees, Refunds, Other }
 
 enum class ScheduledKind { Income, Bill, Rent }
 

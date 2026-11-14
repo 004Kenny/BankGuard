@@ -30,6 +30,7 @@ import com.example.bankguard.ui.components.DisclosureCard
 import com.example.bankguard.ui.components.HeroCard
 import com.example.bankguard.ui.components.HeroLabel
 import com.example.bankguard.ui.components.InfoNote
+import com.example.bankguard.ui.components.PrimaryButton
 import com.example.bankguard.ui.components.ScreenColumn
 import com.example.bankguard.ui.components.SectionHeader
 import com.example.bankguard.ui.components.StatusTone
@@ -47,6 +48,7 @@ fun AccountComparisonScreen(
     profile: DemoProfile,
     inputs: SavingsInputs,
     onAdjust: () -> Unit,
+    onOpenAccount: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -69,6 +71,11 @@ fun AccountComparisonScreen(
             Text(stringResource(R.string.ds_hero_note), style = MaterialTheme.typography.bodySmall, color = BankGuardTheme.colors.onHeroMuted)
         }
         OptionBadges(option, best = false)
+        PrimaryButton(
+            text = stringResource(R.string.ao_open_account),
+            onClick = onOpenAccount,
+            trailingIcon = R.drawable.ic_arrow_forward,
+        )
 
         // Comparison table: label on its own line, then "now" and "option" values side by side.
         SurfaceCard(verticalSpacing = Spacing.md) {
@@ -170,7 +177,7 @@ private fun ComparisonPreview() {
             DemoAccountOptions.all.first(),
             DemoProfiles.unbanked,
             DemoAccountOptions.defaultInputs(DemoPersona.Unbanked),
-            {}, {},
+            {}, {}, {},
         )
     }
 }

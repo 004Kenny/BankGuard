@@ -5,6 +5,8 @@ data class AccountOption(
     val id: String,
     val name: String,
     val institution: String,
+    /** Identifies the (fictional) bank, for referral attribution. */
+    val bankId: String,
     val monthlyFee: Money,
     /** How the monthly fee can be avoided, if it can. */
     val monthlyFeeWaivedWithDirectDeposit: Boolean,

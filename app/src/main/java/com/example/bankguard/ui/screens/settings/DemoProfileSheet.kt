@@ -83,24 +83,18 @@ fun DemoProfileSheet(
                 )
             }
             if (profile.persona == DemoPersona.Underbanked) {
-                val declining = bankMode == SimulatedBankMode.DeclineAll
-                SurfaceCard {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(Spacing.md),
-                        modifier = Modifier.toggleable(
-                            value = declining,
-                            role = Role.Switch,
-                            onValueChange = { on -> onSetBankMode(if (on) SimulatedBankMode.DeclineAll else SimulatedBankMode.ApproveEligible) },
-                        ),
-                    ) {
-                        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
-                            Text(stringResource(R.string.profile_bank_title), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurface)
-                            Text(stringResource(R.string.profile_bank_body), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        }
-                        Switch(checked = declining, onCheckedChange = null)
-                    }
-                }
+                BankModeSwitch(
+                    title = stringResource(R.string.profile_bank_title),
+                    body = stringResource(R.string.profile_bank_body),
+                    checked = bankMode == SimulatedBankMode.DeclineAll,
+                    onChange = { on -> onSetBankMode(if (on) SimulatedBankMode.DeclineAll else SimulatedBankMode.ApproveEligible) },
+                )
+                BankModeSwitch(
+                    title = stringResource(R.string.profile_outage_title),
+                    body = stringResource(R.string.profile_outage_body),
+                    checked = bankMode == SimulatedBankMode.Unavailable,
+                    onChange = { on -> onSetBankMode(if (on) SimulatedBankMode.Unavailable else SimulatedBankMode.ApproveEligible) },
+                )
             }
             TonalButton(
                 text = stringResource(other.switchToRes),
@@ -118,6 +112,24 @@ fun DemoProfileSheet(
                 onClick = onOpenAbout,
                 leadingIcon = R.drawable.ic_info,
             )
+        }
+    }
+}
+
+/** One simulated-bank behaviour the presenter can switch on. The modes are exclusive. */
+@Composable
+private fun BankModeSwitch(title: String, body: String, checked: Boolean, onChange: (Boolean) -> Unit) {
+    SurfaceCard {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(Spacing.md),
+            modifier = Modifier.toggleable(value = checked, role = Role.Switch, onValueChange = onChange),
+        ) {
+            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(Spacing.xs)) {
+                Text(title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurface)
+                Text(body, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+            Switch(checked = checked, onCheckedChange = null)
         }
     }
 }

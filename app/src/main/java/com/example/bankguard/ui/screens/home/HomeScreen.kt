@@ -12,6 +12,7 @@ import androidx.compose.ui.semantics.semantics
 import com.example.bankguard.R
 import com.example.bankguard.data.demo.DemoProfile
 import com.example.bankguard.model.DemoPersona
+import com.example.bankguard.domain.streaks.StreakSummary
 import com.example.bankguard.ui.BankGuardTab
 import com.example.bankguard.ui.components.StatusBadge
 import com.example.bankguard.ui.components.StatusTone
@@ -23,10 +24,13 @@ fun HomeScreen(
     profile: DemoProfile,
     onOpenTab: (BankGuardTab) -> Unit,
     onOpenForecast: () -> Unit,
+    streak: StreakSummary,
+    onOpenStreaks: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     when (profile.persona) {
-        DemoPersona.Underbanked -> UnderbankedHome(profile, onOpenTab, onOpenForecast, modifier)
+        // Streaks need an account's balance, so only the underbanked dashboard has them.
+        DemoPersona.Underbanked -> UnderbankedHome(profile, onOpenTab, onOpenForecast, streak, onOpenStreaks, modifier)
         DemoPersona.Unbanked -> UnbankedHome(profile, onOpenTab, modifier)
     }
 }

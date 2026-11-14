@@ -22,6 +22,9 @@ import com.example.bankguard.R
 import com.example.bankguard.data.demo.DemoProfile
 import com.example.bankguard.data.demo.DemoProfiles
 import com.example.bankguard.domain.forecast.CashFlowForecaster
+import com.example.bankguard.domain.recovery.OverdraftDetector
+import com.example.bankguard.ui.BankGuardTab
+import com.example.bankguard.ui.screens.shared.OverdrawnAlert
 import com.example.bankguard.model.CancellationEligibility
 import com.example.bankguard.model.CancellationStatus
 import com.example.bankguard.model.ScheduledKind
@@ -54,13 +57,19 @@ internal fun UnderbankedPrevent(
     cancellations: Map<String, CancellationStatus>,
     onOpenForecast: () -> Unit,
     onOpenCancellation: (String) -> Unit,
+    onOpenTab: (BankGuardTab) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val account = checkNotNull(profile.account)
     val available = checkNotNull(profile.availableBalance)
     val forecast = remember(profile) { CashFlowForecaster.forecast(available, profile.scheduled, HORIZON_DAYS) }
     // Pending charges as originally loaded, so cancelled ones still show with their result.
-    val pending = remember(profile.persona) { DemoProfiles.forPersona(profile.persona).pendingTransactions }
+    // Only charges Prevent may act on: one that has already overdrawn the account is Recover's.
+    val pending = remember(profile.persona, profile.scenario) {
+        DemoProfiles.forScenario(profile.persona, profile.scenario).pendingTransactions.filter { it.cancellation != null }
+    }
+    // An overdraft that has already happened (Recover), as opposed to a projected one (below).
+    val overdraft = remember(profile) { OverdraftDetector.find(profile) }
     val res = LocalResources.current
     val dip = forecast.firstNegativeDay
     val billBeforeDip = profile.scheduled
@@ -103,6 +112,7 @@ internal fun UnderbankedPrevent(
 
         // Alerts
         SectionHeader(title = stringResource(R.string.pv_alerts_title))
+        if (overdraft != null) OverdrawnAlert(overdraft, onOpenRecover = { onOpenTab(BankGuardTab.Recover) })
         if (dip != null && billBeforeDip != null) {
             AlertCard(
                 title = stringResource(R.string.ub_risk_title),
@@ -191,6 +201,6 @@ internal fun UnderbankedPrevent(
 @Composable
 private fun UnderbankedPreventPreview() {
     BankGuardTheme {
-        UnderbankedPrevent(DemoProfiles.underbanked, emptyMap(), {}, {})
+        UnderbankedPrevent(DemoProfiles.underbanked, emptyMap(), {}, {}, {})
     }
 }
