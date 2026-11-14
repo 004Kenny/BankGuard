@@ -27,6 +27,7 @@ import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,17 +53,20 @@ import com.example.bankguard.ui.screens.discover.DiscoverScreen
 import com.example.bankguard.ui.screens.discover.SavingsCalculatorScreen
 import com.example.bankguard.ui.screens.home.HomeScreen
 import com.example.bankguard.ui.screens.onboarding.PersonaSelectionScreen
+import com.example.bankguard.ui.screens.onboarding.WelcomeScreen
 import com.example.bankguard.ui.screens.prevent.CancellationScreen
 import com.example.bankguard.ui.screens.prevent.ForecastDetailScreen
 import com.example.bankguard.ui.screens.prevent.PreventScreen
 import com.example.bankguard.ui.screens.recover.FeeDetailScreen
 import com.example.bankguard.ui.screens.recover.RecoverScreen
 import com.example.bankguard.ui.screens.recover.WaiverLetterScreen
+import com.example.bankguard.ui.screens.settings.AboutScreen
 import com.example.bankguard.ui.screens.settings.DemoProfileSheet
 import com.example.bankguard.ui.theme.BankGuardTheme
 
 /**
- * BankGuard's root. Shows persona selection until a demo persona is chosen, then the tabbed app.
+ * BankGuard's root. Shows the welcome intro, then persona selection until a demo persona is
+ * chosen, then the tabbed app.
  * Switching or resetting the persona rebuilds the tabbed app, so it always reopens on Home.
  */
 @Composable
@@ -71,14 +75,18 @@ fun BankGuardApp(
     session: DemoSessionViewModel = viewModel(),
 ) {
     val persona by session.persona.collectAsState()
+    val introSeen by session.introSeen.collectAsState()
     val profile by session.profile.collectAsState()
     val cancellations by session.cancellations.collectAsState()
     val bankMode by session.bankMode.collectAsState()
     val recoveries by session.recoveries.collectAsState()
     val savingsInputs by session.savingsInputs.collectAsState()
 
-    Crossfade(targetState = persona, label = "persona", modifier = modifier) { active ->
-        if (active == null) {
+    // Welcome intro -> persona selection -> tabbed app. Keyed on persona and intro state.
+    Crossfade(targetState = persona to introSeen, label = "onboarding", modifier = modifier) { (active, seen) ->
+        if (active == null && !seen) {
+            WelcomeScreen(onFinish = session::finishIntro)
+        } else if (active == null) {
             PersonaSelectionScreen(onEnter = session::selectPersona)
         } else {
             BankGuardMain(
@@ -130,18 +138,23 @@ private fun BankGuardMain(
 ) {
     var selectedTab by rememberSaveable { mutableStateOf(BankGuardTab.Home) }
     var showProfileSheet by rememberSaveable { mutableStateOf(false) }
+    var showAbout by rememberSaveable { mutableStateOf(false) }
     val screenStateHolder = rememberSaveableStateHolder()
     // One back stack per tab, so each tab remembers the screen you left it on.
     val stacks = BankGuardTab.entries.associateWith { rememberTabBackStack() }
     val stack = stacks.getValue(selectedTab)
 
     // System Back closes the keyboard if it's open, then the open sub-screen; on a tab's main
-    // screen it leaves the app as usual. (On Android 16 the app can receive the same Back press
-    // that closes the keyboard, so it's checked here.)
+    // screen it leaves the app as usual. (On recent Android versions, seen on Android 15, the app
+    // can receive the same Back press that closes the keyboard, so it's checked here.)
     val imeVisible = WindowInsets.isImeVisible
     val focusManager = LocalFocusManager.current
-    BackHandler(enabled = imeVisible || !stack.isEmpty) {
-        if (imeVisible) focusManager.clearFocus() else stack.pop()
+    BackHandler(enabled = imeVisible || showAbout || !stack.isEmpty) {
+        when {
+            imeVisible -> focusManager.clearFocus()
+            showAbout -> showAbout = false
+            else -> stack.pop()
+        }
     }
 
     Scaffold(
@@ -152,7 +165,10 @@ private fun BankGuardMain(
             BankGuardBottomBar(
                 selectedTab = selectedTab,
                 // Tapping the tab you're already on returns to its main screen.
-                onTabSelected = { tab -> if (tab == selectedTab) stack.popToRoot() else selectedTab = tab },
+                onTabSelected = { tab ->
+                    showAbout = false
+                    if (tab == selectedTab) stack.popToRoot() else selectedTab = tab
+                },
             )
         },
     ) { innerPadding ->
@@ -161,7 +177,11 @@ private fun BankGuardMain(
             .consumeWindowInsets(innerPadding)
 
         val route = stack.top
-        screenStateHolder.SaveableStateProvider(key = "${selectedTab.name}/${route ?: "main"}") {
+        if (showAbout) {
+            screenStateHolder.SaveableStateProvider(key = "about") {
+                AboutScreen(onBack = { showAbout = false }, modifier = screenModifier)
+            }
+        } else screenStateHolder.SaveableStateProvider(key = "${selectedTab.name}/${route ?: "main"}") {
             when (selectedTab) {
                 BankGuardTab.Home -> HomeScreen(
                     profile = profile,
@@ -215,6 +235,10 @@ private fun BankGuardMain(
             onReset = {
                 showProfileSheet = false
                 onResetDemo()
+            },
+            onOpenAbout = {
+                showProfileSheet = false
+                showAbout = true
             },
             onDismiss = { showProfileSheet = false },
         )
@@ -382,6 +406,7 @@ private fun BankGuardBottomBar(
                     },
                     label = { Text(stringResource(tab.labelRes), style = MaterialTheme.typography.labelMedium) },
                     alwaysShowLabel = true,
+                    modifier = Modifier.testTag("tab_${tab.name}"),
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = MaterialTheme.colorScheme.primary,
                         selectedTextColor = MaterialTheme.colorScheme.primary,

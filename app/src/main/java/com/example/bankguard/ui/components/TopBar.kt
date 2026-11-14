@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -77,11 +78,16 @@ fun BankGuardTopBar(
 
 /** Navy rounded square with the aqua shield mark (from the Stitch onboarding logo). */
 @Composable
-fun BankGuardLogo(modifier: Modifier = Modifier, size: Dp = 36.dp) {
+fun BankGuardLogo(
+    modifier: Modifier = Modifier,
+    size: Dp = 36.dp,
+    /** Override when the logo sits on a navy surface, so its square stays visible. */
+    container: Color = BankGuardTheme.colors.heroStart,
+) {
     Box(
         modifier = modifier
             .size(size)
-            .background(BankGuardTheme.colors.heroStart, BankGuardShapes.iconBox),
+            .background(container, BankGuardShapes.iconBox),
         contentAlignment = Alignment.Center,
     ) {
         Icon(

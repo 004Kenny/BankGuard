@@ -91,6 +91,13 @@ class DemoSessionViewModel @JvmOverloads constructor(
         persistSavingsInputs()
     }
 
+    /** Whether the welcome intro has been shown this session. Reset keeps it, so reset lands on persona selection. */
+    val introSeen: StateFlow<Boolean> = savedState.getStateFlow(KEY_INTRO_SEEN, false)
+
+    fun finishIntro() {
+        savedState[KEY_INTRO_SEEN] = true
+    }
+
     fun selectPersona(persona: DemoPersona) {
         savedState[KEY_PERSONA] = persona.name
     }
@@ -249,6 +256,7 @@ class DemoSessionViewModel @JvmOverloads constructor(
     }
 
     private companion object {
+        const val KEY_INTRO_SEEN = "demo_intro_seen"
         const val KEY_SAVINGS_INPUTS = "demo_savings_inputs"
         const val KEY_RECOVERY_STAGES = "demo_recovery_stages"
         const val KEY_RECOVERY_LETTERS = "demo_recovery_letters"

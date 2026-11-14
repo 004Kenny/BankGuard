@@ -43,6 +43,7 @@ fun DemoProfileSheet(
     onSetBankMode: (SimulatedBankMode) -> Unit,
     onSwitch: (DemoPersona) -> Unit,
     onReset: () -> Unit,
+    onOpenAbout: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -112,6 +113,11 @@ fun DemoProfileSheet(
                 leadingIcon = R.drawable.ic_published_with_changes,
             )
             InfoNote(text = stringResource(R.string.profile_reset_body), tone = StatusTone.Demo, iconRes = R.drawable.ic_science)
+            TonalButton(
+                text = stringResource(R.string.about_open),
+                onClick = onOpenAbout,
+                leadingIcon = R.drawable.ic_info,
+            )
         }
     }
 }

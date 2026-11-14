@@ -33,10 +33,7 @@ private fun Gallery() {
             StatusBadge("Pending", StatusTone.Warning)
             StatusBadge("Approved", StatusTone.Success)
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            DemoModeTag()
-            ComingSoonBadge()
-        }
+        DemoModeTag()
         AlertCard(
             title = "Possible overdraft (sample)",
             body = "A scheduled bill may arrive before your next deposit.",

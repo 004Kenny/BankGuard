@@ -113,11 +113,12 @@ fun HeroCard(
 
 /** Small uppercase caption on a hero card, e.g. "SIMULATED AVAILABLE". */
 @Composable
-fun HeroLabel(text: String, modifier: Modifier = Modifier) {
+fun HeroLabel(text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null) {
     Text(
         text = text.uppercase(),
         style = MaterialTheme.typography.labelSmall,
         color = BankGuardTheme.colors.onHeroMuted,
+        textAlign = textAlign,
         modifier = modifier,
     )
 }
@@ -183,43 +184,6 @@ fun InfoNote(
                 .size(Sizes.iconSmall),
         )
         Text(text = text, style = MaterialTheme.typography.bodySmall, color = colors.content)
-    }
-}
-
-/** Placeholder for a planned feature. Shows what it will do and no data. */
-@Composable
-fun FeaturePlaceholderCard(
-    title: String,
-    description: String,
-    modifier: Modifier = Modifier,
-    @DrawableRes iconRes: Int? = null,
-    note: String? = null,
-) {
-    SurfaceCard(modifier = modifier) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(Spacing.md),
-        ) {
-            if (iconRes != null) IconBox(iconRes = iconRes, tone = StatusTone.Brand)
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier
-                    .weight(1f)
-                    .semantics { heading() },
-            )
-            ComingSoonBadge()
-        }
-        Text(
-            text = description,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        if (note != null) InfoNote(text = note, modifier = Modifier.padding(top = Spacing.xs))
     }
 }
 

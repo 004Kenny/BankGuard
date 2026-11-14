@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Window colors, shown before Compose draws (splash and app start). Match ui/theme/Color.kt. -->
+    <color name="window_background">#FFF7FAFC</color>
+    <color name="brand_navy">#FF102A43</color>
+</resources>

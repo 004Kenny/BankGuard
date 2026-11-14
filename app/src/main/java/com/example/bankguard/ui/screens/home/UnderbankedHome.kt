@@ -78,13 +78,14 @@ internal fun UnderbankedHome(
 
         // Balance and 7-day forecast
         HeroCard {
-            Row(verticalAlignment = Alignment.Top) {
+            // Equal halves with a gap, so the two labels wrap instead of running together at large text sizes.
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
                 Column(modifier = Modifier.weight(1f)) {
                     HeroLabel(stringResource(R.string.ub_available))
                     Text(available.format(), style = MoneyText.hero)
                 }
-                Column(horizontalAlignment = Alignment.End) {
-                    HeroLabel(stringResource(R.string.ub_lowest))
+                Column(horizontalAlignment = Alignment.End, modifier = Modifier.weight(1f)) {
+                    HeroLabel(stringResource(R.string.ub_lowest), modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.End)
                     Text(
                         forecast.lowest.balance.format(),
                         style = MoneyText.large,

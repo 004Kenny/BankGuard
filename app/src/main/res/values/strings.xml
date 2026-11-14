@@ -8,7 +8,6 @@
     <string name="nav_discover">Discover</string>
 
     <!-- Shared -->
-    <string name="coming_soon">Coming soon</string>
 
     <!-- Demo transparency and app bar -->
     <string name="demo_mode">DEMO MODE</string>
@@ -32,6 +31,20 @@
         <item quantity="one">%d day ago</item>
         <item quantity="other">%d days ago</item>
     </plurals>
+
+    <!-- Welcome and feature intro -->
+    <string name="intro_welcome_title">Welcome to BankGuard</string>
+    <string name="intro_welcome_body">Free tools to help you avoid bank fees, get back fees you\'ve paid, and find accounts that cost less.</string>
+    <string name="intro_prevent_title">See trouble coming</string>
+    <string name="intro_prevent_body">Forecast your balance, get warned before an overdraft, and ask to cancel eligible pending charges.</string>
+    <string name="intro_recover_title">Ask for fees back</string>
+    <string name="intro_recover_body">Understand each fee, then send your bank a letter you\'ve read and edited. Your bank makes the decision.</string>
+    <string name="intro_discover_title">Find a cheaper account</string>
+    <string name="intro_discover_body">Compare low-fee accounts and see what you could save over check cashers and prepaid cards.</string>
+    <string name="intro_skip">Skip</string>
+    <string name="intro_next">Next</string>
+    <string name="intro_start">Choose a demo profile</string>
+    <string name="intro_page">Page %1$d of %2$d</string>
 
     <!-- Demo personas -->
     <string name="persona_underbanked_title">I have a bank account</string>
@@ -385,4 +398,30 @@
     <string name="calc_reset">Reset to demo values</string>
     <string name="cd_decrease">Decrease %1$s</string>
     <string name="cd_increase">Increase %1$s</string>
+
+    <!-- About and disclosures -->
+    <string name="about_open">About and disclosures</string>
+    <string name="about_title">About BankGuard</string>
+    <string name="about_hero_label">Prototype</string>
+    <string name="about_hero_body">A free financial assistance app for people who are unbanked or underbanked. BankGuard is not a bank and is not affiliated with or endorsed by any bank.</string>
+    <string name="about_disclosures">Disclosures</string>
+    <string name="about_demo_title">Demo data</string>
+    <string name="about_demo_body">Every person, bank, account, merchant and amount in this app is fictional.</string>
+    <string name="about_partner_title">Simulated partner bank</string>
+    <string name="about_partner_body">Pending-charge cancellation uses a simulated partner bank that answers by fixed rules. BankGuard has no real bank integration, and real cancellations would depend on eligibility and the bank\'s approval.</string>
+    <string name="about_refunds_title">Fee refunds</string>
+    <string name="about_refunds_body">BankGuard never contacts your bank. You send any request yourself, and your bank decides whether to refund a fee.</string>
+    <string name="about_letters_title">Waiver letters</string>
+    <string name="about_letters_body">Letters are drafted from a template you review and edit. AI-drafted letters are planned for a later version and would still need your review.</string>
+    <string name="about_estimates_title">Forecasts and savings</string>
+    <string name="about_estimates_body">Forecasts and savings figures are estimates based on simple, visible rules. They aren\'t financial advice or a guarantee.</string>
+    <string name="about_privacy_title">Your information</string>
+    <string name="about_privacy_body">This demo doesn\'t send anything you enter anywhere. Demo progress is cleared when the app is fully closed. Copying or sharing a letter only happens when you choose to.</string>
+    <string name="about_licenses">Open-source licenses</string>
+    <string name="about_license_jakarta">Plus Jakarta Sans font · SIL Open Font License 1.1</string>
+    <string name="about_license_inter">Inter font · SIL Open Font License 1.1</string>
+    <string name="about_license_symbols">Material Symbols icons · Apache License 2.0</string>
+    <string name="about_license_jetpack">Android Jetpack libraries are also used under the Apache License 2.0.</string>
+    <string name="about_license_show">Show license</string>
+    <string name="about_license_hide">Hide license</string>
 </resources>

@@ -108,8 +108,8 @@ fun WaiverLetterScreen(
 
     fun leave() = if (unsaved) confirmLeave = true else onBack()
 
-    // With the keyboard open, Back should only close the keyboard. On Android 16 the app can
-    // receive that same Back press, so handle it here instead of asking to save or leaving.
+    // With the keyboard open, Back should only close the keyboard. On recent Android versions
+    // (seen on Android 15) the app can receive that same Back press, so handle it here.
     val imeVisible = WindowInsets.isImeVisible
     val focusManager = LocalFocusManager.current
     BackHandler {
